@@ -5,62 +5,62 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-using ClientDataAccess;
+using DataBase;
 
 namespace TEConstruye_API.Controllers
 {
     public class EmpleadoController : ApiController
     {
-        // GET api/Usuario
-        public IEnumerable<Cliente> Get()
+        // GET api/Empleado
+        public IEnumerable<Empleado> Get()
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                return entities.Cliente.ToList();
+                return entities.Empleado.ToList();
             }
         }
 
-        // GET api/Usuario/207710175
-        public Cliente Get(int Cedula)
+        // GET api/Empleado/Cedula
+        public Empleado Get(int Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                return entities.Cliente.FirstOrDefault(client => client.Cedula == Cedula);
+                return entities.Empleado.FirstOrDefault(employee => employee.Cedula == Cedula);
             }
         }
 
-        // POST api/values
-        public void Post([FromBody]Cliente cliente)
+        // POST api/Empleado
+        public void Post([FromBody]Empleado empleado)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                entities.Cliente.Add(cliente);
+                entities.Empleado.Add(empleado);
                 entities.SaveChanges();
             }
         }
 
 
-        // PUT api/values/5
-        public void Put(int Cedula, [FromBody]Cliente cliente)
+        // PUT api/Empleado/Cedula
+        public void Put(int Cedula, [FromBody]Empleado empleado)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                var entity = entities.Cliente.FirstOrDefault(client => client.Cedula == Cedula);
-                entity.Nombre = cliente.Nombre;
-                entity.Apellido1 = cliente.Apellido1;
-                entity.Apellido2 = cliente.Apellido2;
-                entity.Telefono = cliente.Telefono;
+                var entity = entities.Empleado.FirstOrDefault(employee => employee.Cedula == Cedula);
+                entity.Nombre = empleado.Nombre;
+                entity.Apellido1 = empleado.Apellido1;
+                entity.Apellido2 = empleado.Apellido2;
+                entity.Telefono = empleado.Telefono;
 
                 entities.SaveChanges();
             }
         }
 
-        // DELETE api/values/5
+        // DELETE api/Empleado/Cedula
         public void Delete(int Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                entities.Cliente.Remove(entities.Cliente.FirstOrDefault(client => client.Cedula == Cedula));
+                entities.Empleado.Remove(entities.Empleado.FirstOrDefault(employee => employee.Cedula == Cedula));
                 entities.SaveChanges();
             }
         }

@@ -1,17 +1,18 @@
-﻿using System;
+﻿using DataBase;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-using ClientDataAccess;
-
 namespace TEConstruye_API.Controllers
 {
     public class ClienteController : ApiController
     {
-        // GET api/Usuario
+
+        // GET api/Cliente
         public IEnumerable<Cliente> Get()
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -19,8 +20,7 @@ namespace TEConstruye_API.Controllers
                 return entities.Cliente.ToList();
             }
         }
-
-        // GET api/Usuario/207710175
+        // GET api/Cliente/Cedula
         public Cliente Get(int Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -29,7 +29,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // POST api/values
+        // POST api/Cliente
         public void Post([FromBody]Cliente cliente)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -40,7 +40,7 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/values/5
+        // PUT api/Cliente/Cedula
         public void Put(int Cedula, [FromBody]Cliente cliente)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -54,8 +54,8 @@ namespace TEConstruye_API.Controllers
                 entities.SaveChanges();
             }
         }
-        
-        // DELETE api/values/5
+
+        // DELETE api/Cliente/Cedula
         public void Delete(int Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
