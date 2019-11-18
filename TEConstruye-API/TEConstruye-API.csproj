@@ -202,6 +202,11 @@
     <Compile Include="Controllers\EtapaProyectoController.cs" />
     <Compile Include="Controllers\GastoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IngenieroController.cs" />
+    <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\ObraController.cs" />
+    <Compile Include="Controllers\ObraMaterialesController.cs" />
+    <Compile Include="Controllers\UbicacionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
