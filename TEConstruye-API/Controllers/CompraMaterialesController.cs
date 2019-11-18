@@ -23,7 +23,7 @@ namespace TEConstruye_API.Controllers
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                return entities.CompraMateriales.FirstOrDefault(buy => buy.IDCompraMateriales == IDCompraMateriales);
+                return entities.CompraMateriales.FirstOrDefault(controller => controller.IDCompraMateriales == IDCompraMateriales);
             }
         }
 
@@ -43,7 +43,7 @@ namespace TEConstruye_API.Controllers
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                var entity = entities.CompraMateriales.FirstOrDefault(buy => buy.IDCompraMateriales == IDCompraMateriales);
+                var entity = entities.CompraMateriales.FirstOrDefault(controller => controller.IDCompraMateriales == IDCompraMateriales);
                 entity.Factura = compraMateriales.Factura;
                 entity.IDMaterial = compraMateriales.IDMaterial;
                 entity.Cantidad = compraMateriales.Cantidad;
@@ -58,7 +58,7 @@ namespace TEConstruye_API.Controllers
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                entities.CompraMateriales.Remove(entities.CompraMateriales.FirstOrDefault(buy => buy.IDCompraMateriales == IDCompraMateriales));
+                entities.CompraMateriales.Remove(entities.CompraMateriales.FirstOrDefault(controller => controller.IDCompraMateriales == IDCompraMateriales));
                 entities.SaveChanges();
             }
         }

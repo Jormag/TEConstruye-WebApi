@@ -197,6 +197,10 @@
     <Compile Include="Controllers\CompraMaterialesController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EmpleadoProyectoController.cs" />
+    <Compile Include="Controllers\EspecialidadController.cs" />
+    <Compile Include="Controllers\EtapaController.cs" />
+    <Compile Include="Controllers\EtapaProyectoController.cs" />
+    <Compile Include="Controllers\GastoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

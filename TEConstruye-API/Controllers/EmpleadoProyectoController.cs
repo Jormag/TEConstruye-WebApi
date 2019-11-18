@@ -10,7 +10,7 @@ namespace TEConstruye_API.Controllers
 {
     public class EmpleadoProyectoController : ApiController
     {
-        // GET api/EmpleadoProyectoProyecto
+        // GET api/EmpleadoProyecto
         public IEnumerable<EmpleadoProyecto> Get()
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -19,46 +19,46 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // GET api/EmpleadoProyectoProyecto/IDEmpleadoProyecto
+        // GET api/EmpleadoProyecto/IDEmpleadoProyecto
         public EmpleadoProyecto Get(int IDEmpleadoProyecto)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                return entities.EmpleadoProyecto.FirstOrDefault(employee => employee.IDEmpleadoProyecto == IDEmpleadoProyecto);
+                return entities.EmpleadoProyecto.FirstOrDefault(controller => controller.IDEmpleadoProyecto == IDEmpleadoProyecto);
             }
         }
 
-        // POST api/EmpleadoProyectoProyecto
-        public void Post([FromBody]EmpleadoProyecto EmpleadoProyectoProyecto)
+        // POST api/EmpleadoProyecto
+        public void Post([FromBody]EmpleadoProyecto EmpleadoProyecto)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                entities.EmpleadoProyecto.Add(EmpleadoProyectoProyecto);
+                entities.EmpleadoProyecto.Add(EmpleadoProyecto);
                 entities.SaveChanges();
             }
         }
 
 
-        // PUT api/EmpleadoProyectoProyecto/IDEmpleadoProyecto
-        public void Put(int IDEmpleadoProyecto, [FromBody]EmpleadoProyecto EmpleadoProyectoProyecto)
+        // PUT api/EmpleadoProyecto/IDEmpleadoProyecto
+        public void Put(int IDEmpleadoProyecto, [FromBody]EmpleadoProyecto EmpleadoProyecto)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                var entity = entities.EmpleadoProyecto.FirstOrDefault(employee => employee.IDEmpleadoProyecto == IDEmpleadoProyecto);
-                entity.IDEmpleado = EmpleadoProyectoProyecto.IDEmpleado;
-                entity.IDObra = EmpleadoProyectoProyecto.IDObra;
-                entity.Horas = EmpleadoProyectoProyecto.Horas;
+                var entity = entities.EmpleadoProyecto.FirstOrDefault(controller => controller.IDEmpleadoProyecto == IDEmpleadoProyecto);
+                entity.IDEmpleado = EmpleadoProyecto.IDEmpleado;
+                entity.IDObra = EmpleadoProyecto.IDObra;
+                entity.Horas = EmpleadoProyecto.Horas;
 
                 entities.SaveChanges();
             }
         }
 
-        // DELETE api/EmpleadoProyectoProyecto/IDEmpleadoProyecto
+        // DELETE api/EmpleadoProyectoP/IDEmpleadoProyecto
         public void Delete(int IDEmpleadoProyecto)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                entities.EmpleadoProyecto.Remove(entities.EmpleadoProyecto.FirstOrDefault(employee => employee.IDEmpleadoProyecto == IDEmpleadoProyecto));
+                entities.EmpleadoProyecto.Remove(entities.EmpleadoProyecto.FirstOrDefault(controller => controller.IDEmpleadoProyecto == IDEmpleadoProyecto));
                 entities.SaveChanges();
             }
         }

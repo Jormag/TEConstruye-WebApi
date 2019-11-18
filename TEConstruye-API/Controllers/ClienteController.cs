@@ -25,7 +25,7 @@ namespace TEConstruye_API.Controllers
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                return entities.Cliente.FirstOrDefault(client => client.Cedula == Cedula);
+                return entities.Cliente.FirstOrDefault(controller => controller.Cedula == Cedula);
             }
         }
 
@@ -45,7 +45,7 @@ namespace TEConstruye_API.Controllers
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                var entity = entities.Cliente.FirstOrDefault(client => client.Cedula == Cedula);
+                var entity = entities.Cliente.FirstOrDefault(controller => controller.Cedula == Cedula);
                 entity.Nombre = cliente.Nombre;
                 entity.Apellido1 = cliente.Apellido1;
                 entity.Apellido2 = cliente.Apellido2;
@@ -60,7 +60,7 @@ namespace TEConstruye_API.Controllers
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                entities.Cliente.Remove(entities.Cliente.FirstOrDefault(client => client.Cedula == Cedula));
+                entities.Cliente.Remove(entities.Cliente.FirstOrDefault(controller => controller.Cedula == Cedula));
                 entities.SaveChanges();
             }
         }
