@@ -193,6 +193,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Cliente.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompraMateriales.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CompraMaterialesController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
@@ -207,23 +213,58 @@
     <Compile Include="Controllers\ObraController.cs" />
     <Compile Include="Controllers\ObraMaterialesController.cs" />
     <Compile Include="Controllers\UbicacionController.cs" />
+    <Compile Include="Empleado.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoProyecto.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Especialidad.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Etapa.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EtapaProyecto.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gasto.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\CompraMateriales.cs" />
-    <Compile Include="Models\Empleado.cs" />
-    <Compile Include="Models\EmpleadoProyecto.cs" />
-    <Compile Include="Models\Especialidad.cs" />
-    <Compile Include="Models\Etapa.cs" />
-    <Compile Include="Models\EtapaProyecto.cs" />
-    <Compile Include="Models\Gasto.cs" />
-    <Compile Include="Models\Ingeniero.cs" />
-    <Compile Include="Models\Material.cs" />
-    <Compile Include="Models\Obra.cs" />
-    <Compile Include="Models\ObraMateriales.cs" />
-    <Compile Include="Models\Ubicacion.cs" />
+    <Compile Include="Ingeniero.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Material.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Obra.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ObraMateriales.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TEConstruyeDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TEConstruyeDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TEConstruyeDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TEConstruyeDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TEConstruyeDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Ubicacion.cs">
+      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -255,12 +296,23 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\TEConstruye-WebApi - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="TEConstruyeDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TEConstruyeDBModel.edmx</DependentUpon>
+      <LastGenOutput>TEConstruyeDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TEConstruyeDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TEConstruyeDBModel.edmx</DependentUpon>
+      <LastGenOutput>TEConstruyeDBModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -275,9 +327,17 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <EntityDeploy Include="TEConstruyeDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TEConstruyeDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="TEConstruyeDBModel.edmx.diagram">
+      <DependentUpon>TEConstruyeDBModel.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -310,12 +370,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataBase\DataBase.csproj">
-      <Project>{435a2209-c320-4812-ac53-79d5850f1bab}</Project>
-      <Name>DataBase</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
