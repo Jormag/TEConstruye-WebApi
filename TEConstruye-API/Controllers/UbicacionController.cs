@@ -18,7 +18,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // GET api/Ubicacion/IDUbicacion
+        // GET api/Ubicacion/?IDUbicacion
         public Ubicacion Get(int IDUbicacion)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -38,7 +38,7 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/Ubicacion/IDUbicacion
+        // PUT api/Ubicacion/?IDUbicacion
         public void Put(int IDUbicacion, [FromBody]Ubicacion Ubicacion)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -52,7 +52,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // DELETE api/Ubicacion/IDUbicacion
+        // DELETE api/Ubicacion/?IDUbicacion
         public void Delete(int IDUbicacion)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())

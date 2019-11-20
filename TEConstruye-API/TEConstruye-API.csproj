@@ -197,18 +197,16 @@
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ClienteController.cs" />
-    <Compile Include="Controllers\CompraMaterialesController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
-    <Compile Include="Controllers\EmpleadoProyectoController.cs" />
+    <Compile Include="Controllers\EmpleadoObraController.cs" />
     <Compile Include="Controllers\EspecialidadController.cs" />
     <Compile Include="Controllers\EtapaController.cs" />
-    <Compile Include="Controllers\EtapaProyectoController.cs" />
-    <Compile Include="Controllers\GastoController.cs" />
+    <Compile Include="Controllers\EtapaObraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngenieroController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\ObraController.cs" />
-    <Compile Include="Controllers\ObraMaterialesController.cs" />
+    <Compile Include="Controllers\EtapaMaterialesController.cs" />
     <Compile Include="Controllers\UbicacionController.cs" />
     <Compile Include="Empleado.cs">
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>

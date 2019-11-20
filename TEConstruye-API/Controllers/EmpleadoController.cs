@@ -18,7 +18,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // GET api/Empleado/Cedula
+        // GET api/Empleado/?Cedula
         public Empleado Get(int Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -38,7 +38,7 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/Empleado/Cedula
+        // PUT api/Empleado/?Cedula
         public void Put(int Cedula, [FromBody]Empleado empleado)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -53,7 +53,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // DELETE api/Empleado/Cedula
+        // DELETE api/Empleado/?Cedula
         public void Delete(int Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())

@@ -18,7 +18,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // GET api/Especialidad/IDEspecialidad
+        // GET api/Especialidad/?IDEspecialidad
         public Especialidad Get(int IDEspecialidad)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -38,7 +38,7 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/Especialidad/IDEspecialidad
+        // PUT api/Especialidad/?IDEspecialidad
         public void Put(int IDEspecialidad, [FromBody]Especialidad Especialidad)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -50,7 +50,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // DELETE api/Especialidad/IDEspecialidad
+        // DELETE api/Especialidad/?IDEspecialidad
         public void Delete(int IDEspecialidad)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())

@@ -19,7 +19,7 @@ namespace TEConstruye_API.Controllers
                 return entities.Cliente.ToList();
             }
         }
-        // GET api/Cliente/Cedula
+        // GET api/Cliente/?Cedula
         public Cliente Get(int Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -39,7 +39,7 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/Cliente/Cedula
+        // PUT api/Cliente/?Cedula
         public void Put(int Cedula, [FromBody]Cliente cliente)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -54,7 +54,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // DELETE api/Cliente/Cedula
+        // DELETE api/Cliente/?Cedula
         public void Delete(int Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())

@@ -18,7 +18,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // GET api/Etapa/IDEtapa
+        // GET api/Etapa/?IDEtapa
         public Etapa Get(int IDEtapa)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -38,40 +38,19 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/Etapa/IDEtapa
+        // PUT api/Etapa/?IDEtapa
         public void Put(int IDEtapa, [FromBody]Etapa Etapa)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
                 var entity = entities.Etapa.FirstOrDefault(controller => controller.IDEtapa == IDEtapa);
-                entity.IDObra = Etapa.IDObra;
-                entity.Descripcion = Etapa.Descripcion;
-                entity.TrabajoPreliminar = Etapa.TrabajoPreliminar;
-                entity.Cimiento = Etapa.Cimiento;
-                entity.Paredes = Etapa.Paredes;
-                entity.ConcretoReforzado = Etapa.ConcretoReforzado;
-                entity.Techos = Etapa.Techos;
-                entity.Cielos = Etapa.Cielos;
-                entity.Repello = Etapa.Repello;
-                entity.Entrepisos = Etapa.Entrepisos;
-                entity.Pisos = Etapa.Pisos;
-                entity.Enchapes = Etapa.Enchapes;
-                entity.InstalacionPluvial = Etapa.InstalacionPluvial;
-                entity.InstalacionSanitaria = Etapa.InstalacionSanitaria;
-                entity.InstalacionElectrica = Etapa.InstalacionElectrica;
-                entity.Puertas = Etapa.Puertas;
-                entity.Cerrajeria = Etapa.Cerrajeria;
-                entity.Ventanas = Etapa.Ventanas;
-                entity.Closets = Etapa.Closets;
-                entity.MuebleCocina = Etapa.MuebleCocina;
-                entity.Pintura = Etapa.Pintura;
-                entity.Escaleras = Etapa.Escaleras;
+                entity.Nombre = Etapa.Nombre;
 
                 entities.SaveChanges();
             }
         }
 
-        // DELETE api/Etapa/IDEtapa
+        // DELETE api/Etapa/?IDEtapa
         public void Delete(int IDEtapa)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())

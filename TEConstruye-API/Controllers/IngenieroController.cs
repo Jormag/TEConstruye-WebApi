@@ -18,12 +18,12 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // GET api/Ingeniero/Cedula
-        public Ingeniero Get(int Cedula)
+        // GET api/Ingeniero/?Codigo
+        public Ingeniero Get(int Codigo)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                return entities.Ingeniero.FirstOrDefault(controller => controller.Cedula == Cedula);
+                return entities.Ingeniero.FirstOrDefault(controller => controller.Codigo == Codigo);
             }
         }
 
@@ -38,16 +38,16 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/Ingeniero/Cedula
-        public void Put(int Cedula, [FromBody]Ingeniero Ingeniero)
+        // PUT api/Ingeniero/?Codigo
+        public void Put(int Codigo, [FromBody]Ingeniero Ingeniero)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                var entity = entities.Ingeniero.FirstOrDefault(controller => controller.Cedula == Cedula);
+                var entity = entities.Ingeniero.FirstOrDefault(controller => controller.Codigo == Codigo);
                 entity.Nombre = Ingeniero.Nombre;
                 entity.Apellido1 = Ingeniero.Apellido1;
                 entity.Apellido2 = Ingeniero.Apellido2;
-                entity.IDEspecialidad = Ingeniero.IDEspecialidad;
+                entity.Especialidad = Ingeniero.Especialidad;
                 entity.Telefono = Ingeniero.Telefono;
                 entity.Codigo = Ingeniero.Codigo;
 
@@ -55,12 +55,12 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // DELETE api/Ingeniero/Cedula
-        public void Delete(int Cedula)
+        // DELETE api/Ingeniero/?Codigo
+        public void Delete(int Codigo)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                entities.Ingeniero.Remove(entities.Ingeniero.FirstOrDefault(controller => controller.Cedula == Cedula));
+                entities.Ingeniero.Remove(entities.Ingeniero.FirstOrDefault(controller => controller.Codigo == Codigo));
                 entities.SaveChanges();
             }
         }

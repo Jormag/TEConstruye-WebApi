@@ -18,7 +18,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // GET api/Material/Codigo
+        // GET api/Material/?Codigo
         public Material Get(int Codigo)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -38,7 +38,7 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/Material/Codigo
+        // PUT api/Material/?Codigo
         public void Put(int Codigo, [FromBody]Material Material)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -51,7 +51,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // DELETE api/Material/Codigo
+        // DELETE api/Material/?Codigo
         public void Delete(int Codigo)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
