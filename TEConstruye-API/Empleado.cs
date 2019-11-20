@@ -19,7 +19,7 @@ namespace TEConstruye_API
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Empleado()
         {
-            this.EmpleadoProyecto = new HashSet<EmpleadoProyecto>();
+            this.EmpleadoObra = new HashSet<EmpleadoObra>();
         }
         [DataMember]
         public int Cedula { get; set; }
@@ -35,6 +35,6 @@ namespace TEConstruye_API
         public int PagoHora { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmpleadoProyecto> EmpleadoProyecto { get; set; }
+        public virtual ICollection<EmpleadoObra> EmpleadoObra { get; set; }
     }
 }

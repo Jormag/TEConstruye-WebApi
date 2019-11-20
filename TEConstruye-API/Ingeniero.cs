@@ -20,8 +20,9 @@ namespace TEConstruye_API
         public Ingeniero()
         {
             this.Obra = new HashSet<Obra>();
+            this.Obra1 = new HashSet<Obra>();
+            this.Obra2 = new HashSet<Obra>();
         }
-
         [DataMember]
         public int Cedula { get; set; }
         [DataMember]
@@ -31,14 +32,18 @@ namespace TEConstruye_API
         [DataMember]
         public string Apellido2 { get; set; }
         [DataMember]
-        public int IDEspecialidad { get; set; }
+        public int Especialidad { get; set; }
         [DataMember]
         public int Telefono { get; set; }
         [DataMember]
         public int Codigo { get; set; }
     
-        public virtual Especialidad Especialidad { get; set; }
+        public virtual Especialidad Especialidad1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Obra> Obra { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Obra> Obra1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Obra> Obra2 { get; set; }
     }
 }

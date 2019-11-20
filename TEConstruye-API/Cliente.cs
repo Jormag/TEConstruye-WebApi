@@ -21,6 +21,7 @@ namespace TEConstruye_API
         {
             this.Obra = new HashSet<Obra>();
         }
+    
         [DataMember]
         public int Cedula { get; set; }
         [DataMember]

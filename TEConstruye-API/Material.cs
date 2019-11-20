@@ -19,8 +19,7 @@ namespace TEConstruye_API
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Material()
         {
-            this.CompraMateriales = new HashSet<CompraMateriales>();
-            this.ObraMateriales = new HashSet<ObraMateriales>();
+            this.EtapaMateriales = new HashSet<EtapaMateriales>();
         }
         [DataMember]
         public int Codigo { get; set; }
@@ -30,8 +29,6 @@ namespace TEConstruye_API
         public int PrecioUnitario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompraMateriales> CompraMateriales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ObraMateriales> ObraMateriales { get; set; }
+        public virtual ICollection<EtapaMateriales> EtapaMateriales { get; set; }
     }
 }

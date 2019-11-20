@@ -26,17 +26,15 @@ namespace TEConstruye_API
         }
     
         public virtual DbSet<Cliente> Cliente { get; set; }
-        public virtual DbSet<CompraMateriales> CompraMateriales { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
-        public virtual DbSet<EmpleadoProyecto> EmpleadoProyecto { get; set; }
+        public virtual DbSet<EmpleadoObra> EmpleadoObra { get; set; }
         public virtual DbSet<Especialidad> Especialidad { get; set; }
         public virtual DbSet<Etapa> Etapa { get; set; }
-        public virtual DbSet<EtapaProyecto> EtapaProyecto { get; set; }
+        public virtual DbSet<EtapaMateriales> EtapaMateriales { get; set; }
+        public virtual DbSet<EtapaObra> EtapaObra { get; set; }
         public virtual DbSet<Ingeniero> Ingeniero { get; set; }
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Obra> Obra { get; set; }
-        public virtual DbSet<ObraMateriales> ObraMateriales { get; set; }
         public virtual DbSet<Ubicacion> Ubicacion { get; set; }
-        public virtual DbSet<Gasto> Gasto { get; set; }
     }
 }

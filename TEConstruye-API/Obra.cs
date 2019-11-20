@@ -19,28 +19,26 @@ namespace TEConstruye_API
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Obra()
         {
-            this.EmpleadoProyecto = new HashSet<EmpleadoProyecto>();
-            this.Etapa = new HashSet<Etapa>();
-            this.EtapaProyecto = new HashSet<EtapaProyecto>();
-            this.ObraMateriales = new HashSet<ObraMateriales>();
-            this.Gasto = new HashSet<Gasto>();
+            this.EmpleadoObra = new HashSet<EmpleadoObra>();
+            this.EtapaMateriales = new HashSet<EtapaMateriales>();
+            this.EtapaObra = new HashSet<EtapaObra>();
         }
         [DataMember]
         public int IDObra { get; set; }
         [DataMember]
         public string Nombre { get; set; }
         [DataMember]
-        public int IDUbicacion { get; set; }
+        public int Ubicacion { get; set; }
         [DataMember]
         public int Habitaciones { get; set; }
         [DataMember]
-        public int Baños { get; set; }
+        public int Banos { get; set; }
         [DataMember]
         public int Pisos { get; set; }
         [DataMember]
-        public int MetrosCuadradosConstruccion { get; set; }
+        public int AreaConstruccion { get; set; }
         [DataMember]
-        public int MetrosCuadradosLote { get; set; }
+        public int AreaLote { get; set; }
         [DataMember]
         public int IDIngeniero1 { get; set; }
         [DataMember]
@@ -52,16 +50,14 @@ namespace TEConstruye_API
     
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmpleadoProyecto> EmpleadoProyecto { get; set; }
+        public virtual ICollection<EmpleadoObra> EmpleadoObra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Etapa> Etapa { get; set; }
+        public virtual ICollection<EtapaMateriales> EtapaMateriales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EtapaProyecto> EtapaProyecto { get; set; }
+        public virtual ICollection<EtapaObra> EtapaObra { get; set; }
         public virtual Ingeniero Ingeniero { get; set; }
-        public virtual Ubicacion Ubicacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ObraMateriales> ObraMateriales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Gasto> Gasto { get; set; }
+        public virtual Ingeniero Ingeniero1 { get; set; }
+        public virtual Ingeniero Ingeniero2 { get; set; }
+        public virtual Ubicacion Ubicacion1 { get; set; }
     }
 }

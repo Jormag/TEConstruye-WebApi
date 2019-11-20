@@ -14,19 +14,20 @@ namespace TEConstruye_API
     using System.Runtime.Serialization;
 
     [DataContract]
-    public partial class Gasto
+    public partial class EtapaObra
     {
-        [DataMember]
-        public int IDGasto { get; set; }
         [DataMember]
         public int IDObra { get; set; }
         [DataMember]
-        public Nullable<int> IDProveedor { get; set; }
+        public int IDEtapa { get; set; }
         [DataMember]
-        public Nullable<int> IDFactura { get; set; }
+        public System.DateTime FechaInicio { get; set; }
         [DataMember]
-        public string Foto { get; set; }
+        public Nullable<System.DateTime> FechaFin { get; set; }
+        [DataMember]
+        public int Presupuesto { get; set; }
     
+        public virtual Etapa Etapa { get; set; }
         public virtual Obra Obra { get; set; }
     }
 }

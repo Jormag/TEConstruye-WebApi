@@ -196,9 +196,6 @@
     <Compile Include="Cliente.cs">
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CompraMateriales.cs">
-      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CompraMaterialesController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
@@ -216,7 +213,7 @@
     <Compile Include="Empleado.cs">
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EmpleadoProyecto.cs">
+    <Compile Include="EmpleadoObra.cs">
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Especialidad.cs">
@@ -225,10 +222,10 @@
     <Compile Include="Etapa.cs">
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EtapaProyecto.cs">
+    <Compile Include="EtapaMateriales.cs">
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Gasto.cs">
+    <Compile Include="EtapaObra.cs">
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -241,9 +238,6 @@
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Obra.cs">
-      <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ObraMateriales.cs">
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
