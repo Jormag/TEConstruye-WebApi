@@ -50,7 +50,7 @@ namespace TEConstruye_API.Controllers
         }
 
         // DELETE api/FacturaMateriales/?IDFactura?IDMaterial
-        public void Delete(int IDFactura, int IDProducto)
+        public void Delete(int IDFactura, int IDMaterial)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
