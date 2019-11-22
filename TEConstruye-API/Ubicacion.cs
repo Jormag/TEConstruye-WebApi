@@ -30,7 +30,7 @@ namespace TEConstruye_API
         public string Canton { get; set; }
         [DataMember]
         public string Distrito { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Obra> Obra { get; set; }
     }

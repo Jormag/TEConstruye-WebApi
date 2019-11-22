@@ -26,8 +26,9 @@ namespace TEConstruye_API
         public System.DateTime Fecha { get; set; }
         [DataMember]
         public decimal PagoTrabajador { get; set; }
-    
+
         public virtual Empleado Empleado { get; set; }
         public virtual Obra Obra { get; set; }
     }
 }
+

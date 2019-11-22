@@ -26,6 +26,7 @@
           <Key>
             <PropertyRef Name="IDEmpleado" />
             <PropertyRef Name="IDObra" />
+            <PropertyRef Name="Fecha" />
           </Key>
           <Property Name="IDEmpleado" Type="int" Nullable="false" />
           <Property Name="IDObra" Type="int" Nullable="false" />
@@ -502,7 +503,6 @@
           </AssociationSet>
           <EntitySet Name="Cliente" EntityType="TEConstruyeModel.Cliente" />
           <EntitySet Name="Empleado" EntityType="TEConstruyeModel.Empleado" />
-          <EntitySet Name="EmpleadoObra" EntityType="TEConstruyeModel.EmpleadoObra" />
           <EntitySet Name="Etapa" EntityType="TEConstruyeModel.Etapa" />
           <EntitySet Name="EtapaObra" EntityType="TEConstruyeModel.EtapaObra" />
           <EntitySet Name="Factura" EntityType="TEConstruyeModel.Factura" />
@@ -515,14 +515,6 @@
           <AssociationSet Name="FK_Obra_Cliente" Association="TEConstruyeModel.FK_Obra_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Obra" EntitySet="Obra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpleadoObra_Empleado" Association="TEConstruyeModel.FK_EmpleadoObra_Empleado">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="EmpleadoObra" EntitySet="EmpleadoObra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpleadoObra_Obra" Association="TEConstruyeModel.FK_EmpleadoObra_Obra">
-            <End Role="Obra" EntitySet="Obra" />
-            <End Role="EmpleadoObra" EntitySet="EmpleadoObra" />
           </AssociationSet>
           <AssociationSet Name="FK_Ingeniero_Especialidad" Association="TEConstruyeModel.FK_Ingeniero_Especialidad">
             <End Role="Especialidad" EntitySet="Especialidad" />
@@ -588,6 +580,15 @@
             <End Role="Ubicacion" EntitySet="Ubicacion" />
             <End Role="Obra" EntitySet="Obra" />
           </AssociationSet>
+          <EntitySet Name="EmpleadoObra" EntityType="TEConstruyeModel.EmpleadoObra" />
+          <AssociationSet Name="FK_EmpleadoObra_Empleado" Association="TEConstruyeModel.FK_EmpleadoObra_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="EmpleadoObra" EntitySet="EmpleadoObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpleadoObra_Obra" Association="TEConstruyeModel.FK_EmpleadoObra_Obra">
+            <End Role="Obra" EntitySet="Obra" />
+            <End Role="EmpleadoObra" EntitySet="EmpleadoObra" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Especialidad">
           <Key>
@@ -652,19 +653,6 @@
           <Property Name="Telefono" Type="Int32" Nullable="false" />
           <Property Name="PagoHora" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="EmpleadoObra" Relationship="TEConstruyeModel.FK_EmpleadoObra_Empleado" FromRole="Empleado" ToRole="EmpleadoObra" />
-        </EntityType>
-        <EntityType Name="EmpleadoObra">
-          <Key>
-            <PropertyRef Name="IDEmpleado" />
-            <PropertyRef Name="IDObra" />
-          </Key>
-          <Property Name="IDEmpleado" Type="Int32" Nullable="false" />
-          <Property Name="IDObra" Type="Int32" Nullable="false" />
-          <Property Name="Horas" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PagoTrabajador" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="Empleado" Relationship="TEConstruyeModel.FK_EmpleadoObra_Empleado" FromRole="EmpleadoObra" ToRole="Empleado" />
-          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_EmpleadoObra_Obra" FromRole="EmpleadoObra" ToRole="Obra" />
         </EntityType>
         <EntityType Name="Etapa">
           <Key>
@@ -759,7 +747,6 @@
           <Property Name="IDIngeniero3" Type="Int32" />
           <Property Name="IDCliente" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cliente" Relationship="TEConstruyeModel.FK_Obra_Cliente" FromRole="Obra" ToRole="Cliente" />
-          <NavigationProperty Name="EmpleadoObra" Relationship="TEConstruyeModel.FK_EmpleadoObra_Obra" FromRole="Obra" ToRole="EmpleadoObra" />
           <NavigationProperty Name="EtapaMateriales" Relationship="TEConstruyeModel.FK_EtapaMateriales_Obra" FromRole="Obra" ToRole="EtapaMateriales" />
           <NavigationProperty Name="EtapaObra" Relationship="TEConstruyeModel.FK_EtapaObra_Obra" FromRole="Obra" ToRole="EtapaObra" />
           <NavigationProperty Name="Factura" Relationship="TEConstruyeModel.FK_Factura_Obra" FromRole="Obra" ToRole="Factura" />
@@ -768,6 +755,7 @@
           <NavigationProperty Name="Ingeniero1" Relationship="TEConstruyeModel.FK_Obra_Ingeniero2" FromRole="Obra" ToRole="Ingeniero" />
           <NavigationProperty Name="Ingeniero2" Relationship="TEConstruyeModel.FK_Obra_Ingeniero3" FromRole="Obra" ToRole="Ingeniero" />
           <NavigationProperty Name="Ubicacion1" Relationship="TEConstruyeModel.FK_Obra_Ubicacion" FromRole="Obra" ToRole="Ubicacion" />
+          <NavigationProperty Name="EmpleadoObra" Relationship="TEConstruyeModel.FK_EmpleadoObra_Obra" FromRole="Obra" ToRole="EmpleadoObra" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -796,30 +784,6 @@
             </Principal>
             <Dependent Role="Obra">
               <PropertyRef Name="IDCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmpleadoObra_Empleado">
-          <End Type="TEConstruyeModel.Empleado" Role="Empleado" Multiplicity="1" />
-          <End Type="TEConstruyeModel.EmpleadoObra" Role="EmpleadoObra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="Cedula" />
-            </Principal>
-            <Dependent Role="EmpleadoObra">
-              <PropertyRef Name="IDEmpleado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmpleadoObra_Obra">
-          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="1" />
-          <End Type="TEConstruyeModel.EmpleadoObra" Role="EmpleadoObra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Obra">
-              <PropertyRef Name="IDObra" />
-            </Principal>
-            <Dependent Role="EmpleadoObra">
-              <PropertyRef Name="IDObra" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1015,6 +979,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="EmpleadoObra">
+          <Key>
+            <PropertyRef Name="IDEmpleado" />
+            <PropertyRef Name="IDObra" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="IDEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="IDObra" Type="Int32" Nullable="false" />
+          <Property Name="Horas" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PagoTrabajador" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Empleado" Relationship="TEConstruyeModel.FK_EmpleadoObra_Empleado" FromRole="EmpleadoObra" ToRole="Empleado" />
+          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_EmpleadoObra_Obra" FromRole="EmpleadoObra" ToRole="Obra" />
+        </EntityType>
+        <Association Name="FK_EmpleadoObra_Empleado">
+          <End Type="TEConstruyeModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="TEConstruyeModel.EmpleadoObra" Role="EmpleadoObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="EmpleadoObra">
+              <PropertyRef Name="IDEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpleadoObra_Obra">
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="1" />
+          <End Type="TEConstruyeModel.EmpleadoObra" Role="EmpleadoObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obra">
+              <PropertyRef Name="IDObra" />
+            </Principal>
+            <Dependent Role="EmpleadoObra">
+              <PropertyRef Name="IDObra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1065,17 +1067,6 @@
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmpleadoObra">
-            <EntityTypeMapping TypeName="TEConstruyeModel.EmpleadoObra">
-              <MappingFragment StoreEntitySet="EmpleadoObra">
-                <ScalarProperty Name="PagoTrabajador" ColumnName="PagoTrabajador" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Horas" ColumnName="Horas" />
-                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
-                <ScalarProperty Name="IDEmpleado" ColumnName="IDEmpleado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1174,6 +1165,17 @@
                 <ScalarProperty Name="Canton" ColumnName="Canton" />
                 <ScalarProperty Name="Provincia" ColumnName="Provincia" />
                 <ScalarProperty Name="IDUbicacion" ColumnName="IDUbicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpleadoObra">
+            <EntityTypeMapping TypeName="TEConstruyeModel.EmpleadoObra">
+              <MappingFragment StoreEntitySet="EmpleadoObra">
+                <ScalarProperty Name="PagoTrabajador" ColumnName="PagoTrabajador" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Horas" ColumnName="Horas" />
+                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
+                <ScalarProperty Name="IDEmpleado" ColumnName="IDEmpleado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

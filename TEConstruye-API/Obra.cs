@@ -50,7 +50,7 @@ namespace TEConstruye_API
         public Nullable<int> IDIngeniero3 { get; set; }
         [DataMember]
         public string IDCliente { get; set; }
-    
+
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmpleadoObra> EmpleadoObra { get; set; }

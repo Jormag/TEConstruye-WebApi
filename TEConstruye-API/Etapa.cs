@@ -28,7 +28,7 @@ namespace TEConstruye_API
         public int IDEtapa { get; set; }
         [DataMember]
         public string Nombre { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EtapaMateriales> EtapaMateriales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -37,3 +37,4 @@ namespace TEConstruye_API
         public virtual ICollection<Factura> Factura { get; set; }
     }
 }
+

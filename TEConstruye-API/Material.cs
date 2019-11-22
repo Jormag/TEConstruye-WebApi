@@ -29,7 +29,7 @@ namespace TEConstruye_API
         public string Nombre { get; set; }
         [DataMember]
         public decimal PrecioUnitario { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EtapaMateriales> EtapaMateriales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -34,7 +34,7 @@ namespace TEConstruye_API
         public int Telefono { get; set; }
         [DataMember]
         public int Codigo { get; set; }
-    
+
         public virtual Especialidad Especialidad1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Obra> Obra { get; set; }

@@ -26,9 +26,10 @@ namespace TEConstruye_API
         public int IDFactura { get; set; }
         [DataMember]
         public string Foto { get; set; }
-    
+
         public virtual Factura Factura { get; set; }
         public virtual Obra Obra { get; set; }
         public virtual Proveedor Proveedor1 { get; set; }
     }
 }
+

@@ -30,7 +30,7 @@ namespace TEConstruye_API
         public decimal GastoEtapa { get; set; }
         [DataMember]
         public string Descripcion { get; set; }
-    
+
         public virtual Etapa Etapa { get; set; }
         public virtual Obra Obra { get; set; }
     }

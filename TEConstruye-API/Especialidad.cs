@@ -26,7 +26,7 @@ namespace TEConstruye_API
         public int IDEspecialidad { get; set; }
         [DataMember]
         public string TipoEspecialidad { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ingeniero> Ingeniero { get; set; }
     }

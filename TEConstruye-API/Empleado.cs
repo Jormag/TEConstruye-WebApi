@@ -30,7 +30,7 @@ namespace TEConstruye_API
         public int Telefono { get; set; }
         [DataMember]
         public decimal PagoHora { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmpleadoObra> EmpleadoObra { get; set; }
     }

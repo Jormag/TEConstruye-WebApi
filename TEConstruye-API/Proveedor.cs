@@ -26,7 +26,7 @@ namespace TEConstruye_API
         public int IDProveedor { get; set; }
         [DataMember]
         public string Nombre { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Gasto> Gasto { get; set; }
     }

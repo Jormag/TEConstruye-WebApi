@@ -18,12 +18,12 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // GET api/EmpleadoObra/?IDEmpleado?IDObra
-        public EmpleadoObra Get(int IDEmpleado, int IDObra)
+        // GET api/EmpleadoObra/?IDEmpleado?IDObra?Fecha
+        public EmpleadoObra Get(int IDEmpleado, int IDObra, System.DateTime Fecha)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                return entities.EmpleadoObra.FirstOrDefault(controller => controller.IDEmpleado == IDEmpleado && controller.IDObra == IDObra);
+                return entities.EmpleadoObra.FirstOrDefault(controller => controller.IDEmpleado == IDEmpleado && controller.IDObra == IDObra && controller.Fecha == Fecha);
             }
         }
 
@@ -38,12 +38,12 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/EmpleadoObra/?IDEmpleado?IDObra
-        public void Put(int IDEmpleado, int IDObra, [FromBody]EmpleadoObra EmpleadoObra)
+        // PUT api/EmpleadoObra/?IDEmpleado?IDObra?Fecha
+        public void Put(int IDEmpleado, int IDObra, System.DateTime Fecha, [FromBody]EmpleadoObra EmpleadoObra)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                var entity = entities.EmpleadoObra.FirstOrDefault(controller => controller.IDEmpleado == IDEmpleado && controller.IDObra == IDObra);
+                var entity = entities.EmpleadoObra.FirstOrDefault(controller => controller.IDEmpleado == IDEmpleado && controller.IDObra == IDObra && controller.Fecha == Fecha);
                 entity.Horas = EmpleadoObra.Horas;
                 entity.Fecha = EmpleadoObra.Fecha;
                 entity.PagoTrabajador = EmpleadoObra.PagoTrabajador;
@@ -52,12 +52,12 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // DELETE api/EmpleadoObra/?IDEmpleado?IDObra
-        public void Delete(int IDEmpleado, int IDObra)
+        // DELETE api/EmpleadoObra/?IDEmpleado?IDObra?Fecha
+        public void Delete(int IDEmpleado, int IDObra, System.DateTime Fecha)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
-                entities.EmpleadoObra.Remove(entities.EmpleadoObra.FirstOrDefault(controller => controller.IDEmpleado == IDEmpleado && controller.IDObra == IDObra));
+                entities.EmpleadoObra.Remove(entities.EmpleadoObra.FirstOrDefault(controller => controller.IDEmpleado == IDEmpleado && controller.IDObra == IDObra && controller.Fecha == Fecha));
                 entities.SaveChanges();
             }
         }

@@ -22,8 +22,9 @@ namespace TEConstruye_API
         public int IDMaterial { get; set; }
         [DataMember]
         public decimal Neto { get; set; }
-    
+
         public virtual Factura Factura { get; set; }
         public virtual Material Material { get; set; }
     }
 }
+
