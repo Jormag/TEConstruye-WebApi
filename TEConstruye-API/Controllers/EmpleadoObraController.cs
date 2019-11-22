@@ -18,7 +18,7 @@ namespace TEConstruye_API.Controllers
             }
         }
 
-        // GET api/EmpleadoObra/?IDEmpleado?IDOBra
+        // GET api/EmpleadoObra/?IDEmpleado?IDObra
         public EmpleadoObra Get(int IDEmpleado, int IDObra)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
@@ -38,21 +38,21 @@ namespace TEConstruye_API.Controllers
         }
 
 
-        // PUT api/EmpleadoObra/?IDEmpleado?IDOBra
+        // PUT api/EmpleadoObra/?IDEmpleado?IDObra
         public void Put(int IDEmpleado, int IDObra, [FromBody]EmpleadoObra EmpleadoObra)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
                 var entity = entities.EmpleadoObra.FirstOrDefault(controller => controller.IDEmpleado == IDEmpleado && controller.IDObra == IDObra);
-                entity.IDEmpleado = EmpleadoObra.IDEmpleado;
-                entity.IDObra = EmpleadoObra.IDObra;
                 entity.Horas = EmpleadoObra.Horas;
+                entity.Fecha = EmpleadoObra.Fecha;
+                entity.PagoTrabajador = EmpleadoObra.PagoTrabajador;
 
                 entities.SaveChanges();
             }
         }
 
-        // DELETE api/EmpleadoObra/?IDEmpleado?IDOBra
+        // DELETE api/EmpleadoObra/?IDEmpleado?IDObra
         public void Delete(int IDEmpleado, int IDObra)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())

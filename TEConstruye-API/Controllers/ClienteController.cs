@@ -20,7 +20,7 @@ namespace TEConstruye_API.Controllers
             }
         }
         // GET api/Cliente/?Cedula
-        public Cliente Get(int Cedula)
+        public Cliente Get(string Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
@@ -40,14 +40,12 @@ namespace TEConstruye_API.Controllers
 
 
         // PUT api/Cliente/?Cedula
-        public void Put(int Cedula, [FromBody]Cliente cliente)
+        public void Put(string Cedula, [FromBody]Cliente cliente)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
                 var entity = entities.Cliente.FirstOrDefault(controller => controller.Cedula == Cedula);
                 entity.Nombre = cliente.Nombre;
-                entity.Apellido1 = cliente.Apellido1;
-                entity.Apellido2 = cliente.Apellido2;
                 entity.Telefono = cliente.Telefono;
 
                 entities.SaveChanges();
@@ -55,7 +53,7 @@ namespace TEConstruye_API.Controllers
         }
 
         // DELETE api/Cliente/?Cedula
-        public void Delete(int Cedula)
+        public void Delete(string Cedula)
         {
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {

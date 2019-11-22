@@ -22,6 +22,7 @@ namespace TEConstruye_API
             this.FacturaMateriales = new HashSet<FacturaMateriales>();
             this.Gasto = new HashSet<Gasto>();
         }
+
         [DataMember]
         public int IDFactura { get; set; }
         [DataMember]
@@ -32,9 +33,9 @@ namespace TEConstruye_API
         public System.DateTime Fecha { get; set; }
     
         public virtual Etapa Etapa { get; set; }
+        public virtual Obra Obra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FacturaMateriales> FacturaMateriales { get; set; }
-        public virtual Obra Obra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Gasto> Gasto { get; set; }
     }

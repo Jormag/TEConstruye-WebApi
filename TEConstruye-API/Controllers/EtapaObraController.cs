@@ -44,11 +44,11 @@ namespace TEConstruye_API.Controllers
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
                 var entity = entities.EtapaObra.FirstOrDefault(controller => controller.IDObra == IDObra && controller.IDEtapa == IDEtapa);
-                entity.IDObra = EtapaObra.IDObra;
-                entity.IDEtapa = EtapaObra.IDEtapa;
                 entity.FechaInicio = EtapaObra.FechaInicio;
                 entity.FechaFin = EtapaObra.FechaFin;
                 entity.Presupuesto = EtapaObra.Presupuesto;
+                entity.GastoEtapa = EtapaObra.GastoEtapa;
+                entity.Descripcion = EtapaObra.Descripcion;
 
                 entities.SaveChanges();
             }

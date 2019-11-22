@@ -202,11 +202,15 @@
     <Compile Include="Controllers\EspecialidadController.cs" />
     <Compile Include="Controllers\EtapaController.cs" />
     <Compile Include="Controllers\EtapaObraController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
+    <Compile Include="Controllers\FacturaMaterialesController.cs" />
+    <Compile Include="Controllers\GastoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngenieroController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\ObraController.cs" />
     <Compile Include="Controllers\EtapaMaterialesController.cs" />
+    <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\UbicacionController.cs" />
     <Compile Include="Empleado.cs">
       <DependentUpon>TEConstruyeDBModel.tt</DependentUpon>

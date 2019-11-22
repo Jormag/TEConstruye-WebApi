@@ -5,26 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f2b299cd2b9b4e3fb0b0bd2e10f3a218" Name="Diagram1">
-        <EntityTypeShape EntityType="TEConstruyeModel.Cliente" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="TEConstruyeModel.Empleado" Width="1.5" PointX="3" PointY="11.875" />
-        <EntityTypeShape EntityType="TEConstruyeModel.EmpleadoObra" Width="1.5" PointX="5.25" PointY="6.75" />
-        <EntityTypeShape EntityType="TEConstruyeModel.Etapa" Width="1.5" PointX="3" PointY="1.875" />
-        <EntityTypeShape EntityType="TEConstruyeModel.EtapaObra" Width="1.5" PointX="8.25" PointY="6.5" />
-        <EntityTypeShape EntityType="TEConstruyeModel.Factura" Width="1.5" PointX="5.25" PointY="2.625" />
-        <EntityTypeShape EntityType="TEConstruyeModel.FacturaMateriales" Width="1.5" PointX="7.5" PointY="3.25" />
-        <EntityTypeShape EntityType="TEConstruyeModel.Gasto" Width="1.5" PointX="10.5" PointY="5.25" />
-        <EntityTypeShape EntityType="TEConstruyeModel.Ingeniero" Width="1.5" PointX="0.75" PointY="6.5" />
-        <EntityTypeShape EntityType="TEConstruyeModel.Obra" Width="1.5" PointX="3" PointY="5.25" />
-        <EntityTypeShape EntityType="TEConstruyeModel.Proveedor" Width="1.5" PointX="8.25" PointY="0.75" />
-        <EntityTypeShape EntityType="TEConstruyeModel.Ubicacion" Width="1.5" PointX="0.75" PointY="10.125" />
+        <EntityTypeShape EntityType="TEConstruyeModel.Cliente" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="TEConstruyeModel.Empleado" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="TEConstruyeModel.EmpleadoObra" Width="1.5" PointX="5.25" PointY="2.25" />
+        <EntityTypeShape EntityType="TEConstruyeModel.Etapa" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="TEConstruyeModel.EtapaObra" Width="1.5" PointX="5.25" PointY="6" />
+        <EntityTypeShape EntityType="TEConstruyeModel.Factura" Width="1.5" PointX="8.25" PointY="6.125" />
+        <EntityTypeShape EntityType="TEConstruyeModel.FacturaMateriales" Width="1.5" PointX="10.5" PointY="9.75" />
+        <EntityTypeShape EntityType="TEConstruyeModel.Gasto" Width="1.5" PointX="10.5" PointY="6.125" />
+        <EntityTypeShape EntityType="TEConstruyeModel.Ingeniero" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="TEConstruyeModel.Obra" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="TEConstruyeModel.Proveedor" Width="1.5" PointX="8.25" PointY="3.625" />
+        <EntityTypeShape EntityType="TEConstruyeModel.Ubicacion" Width="1.5" PointX="0.75" PointY="9.625" />
         <AssociationConnector Association="TEConstruyeModel.FK_Obra_Cliente" />
         <AssociationConnector Association="TEConstruyeModel.FK_EmpleadoObra_Empleado" />
         <AssociationConnector Association="TEConstruyeModel.FK_EmpleadoObra_Obra" />
         <AssociationConnector Association="TEConstruyeModel.FK_EtapaObra_Etapa" />
         <AssociationConnector Association="TEConstruyeModel.FK_Factura_Etapa" />
         <AssociationConnector Association="TEConstruyeModel.FK_EtapaObra_Obra" />
-        <AssociationConnector Association="TEConstruyeModel.FK_Factura_Factura" />
         <AssociationConnector Association="TEConstruyeModel.FK_Factura_Obra" />
+        <AssociationConnector Association="TEConstruyeModel.FK_FacturaMateriales_Factura" />
         <AssociationConnector Association="TEConstruyeModel.FK_Gasto_Factura" />
         <AssociationConnector Association="TEConstruyeModel.FK_Gasto_Obra" />
         <AssociationConnector Association="TEConstruyeModel.FK_Gasto_Proveedor" />

@@ -84,10 +84,10 @@
         <EntityType Name="FacturaMateriales">
           <Key>
             <PropertyRef Name="IDFactura" />
-            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="IDMaterial" />
           </Key>
           <Property Name="IDFactura" Type="int" Nullable="false" />
-          <Property Name="IDProducto" Type="int" Nullable="false" />
+          <Property Name="IDMaterial" Type="int" Nullable="false" />
           <Property Name="Neto" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Gasto">
@@ -247,7 +247,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Factura_Factura">
+        <Association Name="FK_Factura_Obra">
+          <End Role="Obra" Type="Self.Obra" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obra">
+              <PropertyRef Name="IDObra" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IDObra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturaMateriales_Factura">
           <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
           <End Role="FacturaMateriales" Type="Self.FacturaMateriales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -259,15 +271,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Factura_Obra">
-          <End Role="Obra" Type="Self.Obra" Multiplicity="1" />
-          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+        <Association Name="FK_FacturaMateriales_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="FacturaMateriales" Type="Self.FacturaMateriales" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Obra">
-              <PropertyRef Name="IDObra" />
+            <Principal Role="Material">
+              <PropertyRef Name="Codigo" />
             </Principal>
-            <Dependent Role="Factura">
-              <PropertyRef Name="IDObra" />
+            <Dependent Role="FacturaMateriales">
+              <PropertyRef Name="IDMaterial" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -379,18 +391,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Producto_Factura">
-          <End Role="Material" Type="Self.Material" Multiplicity="1" />
-          <End Role="FacturaMateriales" Type="Self.FacturaMateriales" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Material">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="FacturaMateriales">
-              <PropertyRef Name="IDProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="TEConstruyeModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
@@ -439,13 +439,17 @@
             <End Role="Etapa" EntitySet="Etapa" />
             <End Role="Factura" EntitySet="Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK_Factura_Factura" Association="Self.FK_Factura_Factura">
-            <End Role="Factura" EntitySet="Factura" />
-            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
-          </AssociationSet>
           <AssociationSet Name="FK_Factura_Obra" Association="Self.FK_Factura_Obra">
             <End Role="Obra" EntitySet="Obra" />
             <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaMateriales_Factura" Association="Self.FK_FacturaMateriales_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaMateriales_Material" Association="Self.FK_FacturaMateriales_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
           </AssociationSet>
           <AssociationSet Name="FK_Gasto_Factura" Association="Self.FK_Gasto_Factura">
             <End Role="Factura" EntitySet="Factura" />
@@ -482,10 +486,6 @@
           <AssociationSet Name="FK_Obra_Ubicacion" Association="Self.FK_Obra_Ubicacion">
             <End Role="Ubicacion" EntitySet="Ubicacion" />
             <End Role="Obra" EntitySet="Obra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Producto_Factura" Association="Self.FK_Producto_Factura">
-            <End Role="Material" EntitySet="Material" />
-            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -548,19 +548,19 @@
             <End Role="Obra" EntitySet="Obra" />
             <End Role="EtapaObra" EntitySet="EtapaObra" />
           </AssociationSet>
-          <AssociationSet Name="FK_Factura_Factura" Association="TEConstruyeModel.FK_Factura_Factura">
-            <End Role="Factura" EntitySet="Factura" />
-            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
-          </AssociationSet>
           <AssociationSet Name="FK_Factura_Obra" Association="TEConstruyeModel.FK_Factura_Obra">
             <End Role="Obra" EntitySet="Obra" />
             <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaMateriales_Factura" Association="TEConstruyeModel.FK_FacturaMateriales_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
           </AssociationSet>
           <AssociationSet Name="FK_Gasto_Factura" Association="TEConstruyeModel.FK_Gasto_Factura">
             <End Role="Factura" EntitySet="Factura" />
             <End Role="Gasto" EntitySet="Gasto" />
           </AssociationSet>
-          <AssociationSet Name="FK_Producto_Factura" Association="TEConstruyeModel.FK_Producto_Factura">
+          <AssociationSet Name="FK_FacturaMateriales_Material" Association="TEConstruyeModel.FK_FacturaMateriales_Material">
             <End Role="Material" EntitySet="Material" />
             <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
           </AssociationSet>
@@ -611,7 +611,7 @@
           <NavigationProperty Name="Material" Relationship="TEConstruyeModel.FK_EtapaMateriales_Material" FromRole="EtapaMateriales" ToRole="Material" />
           <NavigationProperty Name="Etapa" Relationship="TEConstruyeModel.FK_EtapaMateriales_Etapa" FromRole="EtapaMateriales" ToRole="Etapa" />
           <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_EtapaMateriales_Obra" FromRole="EtapaMateriales" ToRole="Obra" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Material">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -620,7 +620,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PrecioUnitario" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="EtapaMateriales" Relationship="TEConstruyeModel.FK_EtapaMateriales_Material" FromRole="Material" ToRole="EtapaMateriales" />
-          <NavigationProperty Name="FacturaMateriales" Relationship="TEConstruyeModel.FK_Producto_Factura" FromRole="Material" ToRole="FacturaMateriales" />
+          <NavigationProperty Name="FacturaMateriales" Relationship="TEConstruyeModel.FK_FacturaMateriales_Material" FromRole="Material" ToRole="FacturaMateriales" />
         </EntityType>
         <Association Name="FK_EtapaMateriales_Material">
           <End Type="TEConstruyeModel.Material" Role="Material" Multiplicity="1" />
@@ -700,20 +700,20 @@
           <Property Name="IDEtapa" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Etapa" Relationship="TEConstruyeModel.FK_Factura_Etapa" FromRole="Factura" ToRole="Etapa" />
-          <NavigationProperty Name="FacturaMateriales" Relationship="TEConstruyeModel.FK_Factura_Factura" FromRole="Factura" ToRole="FacturaMateriales" />
           <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_Factura_Obra" FromRole="Factura" ToRole="Obra" />
+          <NavigationProperty Name="FacturaMateriales" Relationship="TEConstruyeModel.FK_FacturaMateriales_Factura" FromRole="Factura" ToRole="FacturaMateriales" />
           <NavigationProperty Name="Gasto" Relationship="TEConstruyeModel.FK_Gasto_Factura" FromRole="Factura" ToRole="Gasto" />
         </EntityType>
         <EntityType Name="FacturaMateriales">
           <Key>
             <PropertyRef Name="IDFactura" />
-            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="IDMaterial" />
           </Key>
           <Property Name="IDFactura" Type="Int32" Nullable="false" />
-          <Property Name="IDProducto" Type="Int32" Nullable="false" />
+          <Property Name="IDMaterial" Type="Int32" Nullable="false" />
           <Property Name="Neto" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="Factura" Relationship="TEConstruyeModel.FK_Factura_Factura" FromRole="FacturaMateriales" ToRole="Factura" />
-          <NavigationProperty Name="Material" Relationship="TEConstruyeModel.FK_Producto_Factura" FromRole="FacturaMateriales" ToRole="Material" />
+          <NavigationProperty Name="Factura" Relationship="TEConstruyeModel.FK_FacturaMateriales_Factura" FromRole="FacturaMateriales" ToRole="Factura" />
+          <NavigationProperty Name="Material" Relationship="TEConstruyeModel.FK_FacturaMateriales_Material" FromRole="FacturaMateriales" ToRole="Material" />
         </EntityType>
         <EntityType Name="Gasto">
           <Key>
@@ -895,18 +895,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Factura_Factura">
-          <End Type="TEConstruyeModel.Factura" Role="Factura" Multiplicity="1" />
-          <End Type="TEConstruyeModel.FacturaMateriales" Role="FacturaMateriales" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Factura">
-              <PropertyRef Name="IDFactura" />
-            </Principal>
-            <Dependent Role="FacturaMateriales">
-              <PropertyRef Name="IDFactura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Factura_Obra">
           <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="1" />
           <End Type="TEConstruyeModel.Factura" Role="Factura" Multiplicity="*" />
@@ -916,6 +904,18 @@
             </Principal>
             <Dependent Role="Factura">
               <PropertyRef Name="IDObra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturaMateriales_Factura">
+          <End Type="TEConstruyeModel.Factura" Role="Factura" Multiplicity="1" />
+          <End Type="TEConstruyeModel.FacturaMateriales" Role="FacturaMateriales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="IDFactura" />
+            </Principal>
+            <Dependent Role="FacturaMateriales">
+              <PropertyRef Name="IDFactura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -931,7 +931,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Producto_Factura">
+        <Association Name="FK_FacturaMateriales_Material">
           <End Type="TEConstruyeModel.Material" Role="Material" Multiplicity="1" />
           <End Type="TEConstruyeModel.FacturaMateriales" Role="FacturaMateriales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -939,7 +939,7 @@
               <PropertyRef Name="Codigo" />
             </Principal>
             <Dependent Role="FacturaMateriales">
-              <PropertyRef Name="IDProducto" />
+              <PropertyRef Name="IDMaterial" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1114,7 +1114,7 @@
             <EntityTypeMapping TypeName="TEConstruyeModel.FacturaMateriales">
               <MappingFragment StoreEntitySet="FacturaMateriales">
                 <ScalarProperty Name="Neto" ColumnName="Neto" />
-                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+                <ScalarProperty Name="IDMaterial" ColumnName="IDMaterial" />
                 <ScalarProperty Name="IDFactura" ColumnName="IDFactura" />
               </MappingFragment>
             </EntityTypeMapping>

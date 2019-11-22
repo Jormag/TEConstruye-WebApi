@@ -54,6 +54,7 @@ namespace TEConstruye_API.Controllers
                 entity.IDIngeniero1 = Obra.IDIngeniero1;
                 entity.IDIngeniero2 = Obra.IDIngeniero2;
                 entity.IDIngeniero3 = Obra.IDIngeniero3;
+                entity.IDCliente = Obra.IDCliente;
 
                 entities.SaveChanges();
             }

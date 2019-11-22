@@ -21,6 +21,7 @@ namespace TEConstruye_API
         {
             this.Ingeniero = new HashSet<Ingeniero>();
         }
+
         [DataMember]
         public int IDEspecialidad { get; set; }
         [DataMember]

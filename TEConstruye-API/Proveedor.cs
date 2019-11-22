@@ -21,6 +21,7 @@ namespace TEConstruye_API
         {
             this.Gasto = new HashSet<Gasto>();
         }
+
         [DataMember]
         public int IDProveedor { get; set; }
         [DataMember]

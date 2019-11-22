@@ -45,8 +45,6 @@ namespace TEConstruye_API.Controllers
             {
                 var entity = entities.Ingeniero.FirstOrDefault(controller => controller.Codigo == Codigo);
                 entity.Nombre = Ingeniero.Nombre;
-                entity.Apellido1 = Ingeniero.Apellido1;
-                entity.Apellido2 = Ingeniero.Apellido2;
                 entity.Especialidad = Ingeniero.Especialidad;
                 entity.Telefono = Ingeniero.Telefono;
                 entity.Codigo = Ingeniero.Codigo;

@@ -22,6 +22,7 @@ namespace TEConstruye_API
             this.EtapaMateriales = new HashSet<EtapaMateriales>();
             this.FacturaMateriales = new HashSet<FacturaMateriales>();
         }
+
         [DataMember]
         public int Codigo { get; set; }
         [DataMember]

@@ -19,7 +19,7 @@ namespace TEConstruye_API
         [DataMember]
         public int IDFactura { get; set; }
         [DataMember]
-        public int IDProducto { get; set; }
+        public int IDMaterial { get; set; }
         [DataMember]
         public decimal Neto { get; set; }
     

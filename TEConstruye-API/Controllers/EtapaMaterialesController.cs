@@ -44,10 +44,8 @@ namespace TEConstruye_API.Controllers
             using (TEConstruyeEntities entities = new TEConstruyeEntities())
             {
                 var entity = entities.EtapaMateriales.FirstOrDefault(controller => controller.IDObra == IDObra && controller.IDEtapa == IDEtapa && controller.IDMaterial == IDMaterial);
-                entity.IDObra = EtapaMateriales.IDObra;
-                entity.IDEtapa = EtapaMateriales.IDEtapa;
-                entity.IDMaterial = EtapaMateriales.IDMaterial;
                 entity.Cantidad = EtapaMateriales.Cantidad;
+                entity.PrecioTotal = EtapaMateriales.PrecioTotal;
 
                 entities.SaveChanges();
             }
