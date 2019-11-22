@@ -24,9 +24,11 @@ namespace TEConstruye_API
         public int IDMaterial { get; set; }
         [DataMember]
         public int Cantidad { get; set; }
+        [DataMember]
+        public decimal PrecioTotal { get; set; }
     
-        public virtual Etapa Etapa { get; set; }
         public virtual Material Material { get; set; }
+        public virtual Etapa Etapa { get; set; }
         public virtual Obra Obra { get; set; }
     }
 }

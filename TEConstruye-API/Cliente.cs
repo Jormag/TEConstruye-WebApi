@@ -21,17 +21,13 @@ namespace TEConstruye_API
         {
             this.Obra = new HashSet<Obra>();
         }
-    
+
         [DataMember]
-        public int Cedula { get; set; }
+        public string Cedula { get; set; }
         [DataMember]
         public string Nombre { get; set; }
         [DataMember]
-        public string Apellido1 { get; set; }
-        [DataMember]
-        public string Apellido2 { get; set; }
-        [DataMember]
-        public int Telefono { get; set; }
+        public Nullable<int> Telefono { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Obra> Obra { get; set; }

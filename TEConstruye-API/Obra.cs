@@ -22,7 +22,10 @@ namespace TEConstruye_API
             this.EmpleadoObra = new HashSet<EmpleadoObra>();
             this.EtapaMateriales = new HashSet<EtapaMateriales>();
             this.EtapaObra = new HashSet<EtapaObra>();
+            this.Factura = new HashSet<Factura>();
+            this.Gasto = new HashSet<Gasto>();
         }
+
         [DataMember]
         public int IDObra { get; set; }
         [DataMember]
@@ -46,7 +49,7 @@ namespace TEConstruye_API
         [DataMember]
         public Nullable<int> IDIngeniero3 { get; set; }
         [DataMember]
-        public int IDCliente { get; set; }
+        public string IDCliente { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -55,6 +58,10 @@ namespace TEConstruye_API
         public virtual ICollection<EtapaMateriales> EtapaMateriales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EtapaObra> EtapaObra { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Factura> Factura { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Gasto> Gasto { get; set; }
         public virtual Ingeniero Ingeniero { get; set; }
         public virtual Ingeniero Ingeniero1 { get; set; }
         public virtual Ingeniero Ingeniero2 { get; set; }

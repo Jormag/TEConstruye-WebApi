@@ -20,15 +20,18 @@ namespace TEConstruye_API
         public Material()
         {
             this.EtapaMateriales = new HashSet<EtapaMateriales>();
+            this.FacturaMateriales = new HashSet<FacturaMateriales>();
         }
         [DataMember]
         public int Codigo { get; set; }
         [DataMember]
         public string Nombre { get; set; }
         [DataMember]
-        public int PrecioUnitario { get; set; }
+        public decimal PrecioUnitario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EtapaMateriales> EtapaMateriales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FacturaMateriales> FacturaMateriales { get; set; }
     }
 }

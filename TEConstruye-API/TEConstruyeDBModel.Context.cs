@@ -25,16 +25,20 @@ namespace TEConstruye_API
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Especialidad> Especialidad { get; set; }
+        public virtual DbSet<EtapaMateriales> EtapaMateriales { get; set; }
+        public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<EmpleadoObra> EmpleadoObra { get; set; }
-        public virtual DbSet<Especialidad> Especialidad { get; set; }
         public virtual DbSet<Etapa> Etapa { get; set; }
-        public virtual DbSet<EtapaMateriales> EtapaMateriales { get; set; }
         public virtual DbSet<EtapaObra> EtapaObra { get; set; }
+        public virtual DbSet<Factura> Factura { get; set; }
+        public virtual DbSet<FacturaMateriales> FacturaMateriales { get; set; }
+        public virtual DbSet<Gasto> Gasto { get; set; }
         public virtual DbSet<Ingeniero> Ingeniero { get; set; }
-        public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Obra> Obra { get; set; }
+        public virtual DbSet<Proveedor> Proveedor { get; set; }
         public virtual DbSet<Ubicacion> Ubicacion { get; set; }
     }
 }

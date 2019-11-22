@@ -23,14 +23,11 @@ namespace TEConstruye_API
             this.Obra1 = new HashSet<Obra>();
             this.Obra2 = new HashSet<Obra>();
         }
+
         [DataMember]
         public int Cedula { get; set; }
         [DataMember]
         public string Nombre { get; set; }
-        [DataMember]
-        public string Apellido1 { get; set; }
-        [DataMember]
-        public string Apellido2 { get; set; }
         [DataMember]
         public int Especialidad { get; set; }
         [DataMember]

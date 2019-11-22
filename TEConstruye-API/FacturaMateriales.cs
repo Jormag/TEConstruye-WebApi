@@ -14,23 +14,16 @@ namespace TEConstruye_API
     using System.Runtime.Serialization;
 
     [DataContract]
-    public partial class Empleado
+    public partial class FacturaMateriales
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empleado()
-        {
-            this.EmpleadoObra = new HashSet<EmpleadoObra>();
-        }
         [DataMember]
-        public int Cedula { get; set; }
+        public int IDFactura { get; set; }
         [DataMember]
-        public string Nombre { get; set; }
+        public int IDProducto { get; set; }
         [DataMember]
-        public int Telefono { get; set; }
-        [DataMember]
-        public decimal PagoHora { get; set; }
+        public decimal Neto { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmpleadoObra> EmpleadoObra { get; set; }
+        public virtual Factura Factura { get; set; }
+        public virtual Material Material { get; set; }
     }
 }

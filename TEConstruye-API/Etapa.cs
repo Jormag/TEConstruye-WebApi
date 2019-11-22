@@ -21,7 +21,9 @@ namespace TEConstruye_API
         {
             this.EtapaMateriales = new HashSet<EtapaMateriales>();
             this.EtapaObra = new HashSet<EtapaObra>();
+            this.Factura = new HashSet<Factura>();
         }
+
         [DataMember]
         public int IDEtapa { get; set; }
         [DataMember]
@@ -31,5 +33,7 @@ namespace TEConstruye_API
         public virtual ICollection<EtapaMateriales> EtapaMateriales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EtapaObra> EtapaObra { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Factura> Factura { get; set; }
     }
 }

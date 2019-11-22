@@ -4,27 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TEConstruyeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TEConstruyeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Cedula" />
           </Key>
-          <Property Name="Cedula" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Apellido1" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Apellido2" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Telefono" Type="int" Nullable="false" />
+          <Property Name="Cedula" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="int" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
             <PropertyRef Name="Cedula" />
           </Key>
           <Property Name="Cedula" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Apellido1" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Apellido2" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Telefono" Type="int" Nullable="false" />
-          <Property Name="PagoHora" Type="int" Nullable="false" />
+          <Property Name="PagoHora" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="EmpleadoObra">
           <Key>
@@ -33,22 +29,23 @@
           </Key>
           <Property Name="IDEmpleado" Type="int" Nullable="false" />
           <Property Name="IDObra" Type="int" Nullable="false" />
-          <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Horas" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="PagoTrabajador" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Especialidad">
           <Key>
             <PropertyRef Name="IDEspecialidad" />
           </Key>
           <Property Name="IDEspecialidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TipoEspecialidad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TipoEspecialidad" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Etapa">
           <Key>
             <PropertyRef Name="IDEtapa" />
           </Key>
           <Property Name="IDEtapa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="EtapaMateriales">
           <Key>
@@ -59,6 +56,7 @@
           <Property Name="IDObra" Type="int" Nullable="false" />
           <Property Name="IDEtapa" Type="int" Nullable="false" />
           <Property Name="IDMaterial" Type="int" Nullable="false" />
+          <Property Name="PrecioTotal" Type="money" Nullable="false" />
           <Property Name="Cantidad" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EtapaObra">
@@ -70,16 +68,44 @@
           <Property Name="IDEtapa" Type="int" Nullable="false" />
           <Property Name="FechaInicio" Type="date" Nullable="false" />
           <Property Name="FechaFin" Type="date" />
-          <Property Name="Presupuesto" Type="int" Nullable="false" />
+          <Property Name="Presupuesto" Type="money" Nullable="false" />
+          <Property Name="GastoEtapa" Type="money" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="IDFactura" />
+          </Key>
+          <Property Name="IDFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDObra" Type="int" Nullable="false" />
+          <Property Name="IDEtapa" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacturaMateriales">
+          <Key>
+            <PropertyRef Name="IDFactura" />
+            <PropertyRef Name="IDProducto" />
+          </Key>
+          <Property Name="IDFactura" Type="int" Nullable="false" />
+          <Property Name="IDProducto" Type="int" Nullable="false" />
+          <Property Name="Neto" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="IDGasto" />
+          </Key>
+          <Property Name="IDGasto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDObra" Type="int" Nullable="false" />
+          <Property Name="Proveedor" Type="int" Nullable="false" />
+          <Property Name="IDFactura" Type="int" Nullable="false" />
+          <Property Name="Foto" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Ingeniero">
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Cedula" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Apellido1" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Apellido2" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Especialidad" Type="int" Nullable="false" />
           <Property Name="Telefono" Type="int" Nullable="false" />
           <Property Name="Codigo" Type="int" Nullable="false" />
@@ -88,9 +114,9 @@
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
-          <Property Name="Codigo" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="PrecioUnitario" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Obra">
           <Key>
@@ -107,7 +133,14 @@
           <Property Name="IDIngeniero1" Type="int" Nullable="false" />
           <Property Name="IDIngeniero2" Type="int" />
           <Property Name="IDIngeniero3" Type="int" />
-          <Property Name="IDCliente" Type="int" Nullable="false" />
+          <Property Name="IDCliente" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="IDProveedor" />
+          </Key>
+          <Property Name="IDProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="40" Nullable="false" />
         </EntityType>
         <EntityType Name="Ubicacion">
           <Key>
@@ -202,6 +235,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Factura_Etapa">
+          <End Role="Etapa" Type="Self.Etapa" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etapa">
+              <PropertyRef Name="IDEtapa" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IDEtapa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Factura">
+          <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+          <End Role="FacturaMateriales" Type="Self.FacturaMateriales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="IDFactura" />
+            </Principal>
+            <Dependent Role="FacturaMateriales">
+              <PropertyRef Name="IDFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Obra">
+          <End Role="Obra" Type="Self.Obra" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obra">
+              <PropertyRef Name="IDObra" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IDObra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Factura">
+          <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="IDFactura" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="IDFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Obra">
+          <End Role="Obra" Type="Self.Obra" Multiplicity="1" />
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obra">
+              <PropertyRef Name="IDObra" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="IDObra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="IDProveedor" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ingeniero_Especialidad">
           <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
           <End Role="Ingeniero" Type="Self.Ingeniero" Multiplicity="*" />
@@ -274,6 +379,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Producto_Factura">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="FacturaMateriales" Type="Self.FacturaMateriales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="FacturaMateriales">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TEConstruyeModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
@@ -282,9 +399,13 @@
           <EntitySet Name="Etapa" EntityType="Self.Etapa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EtapaMateriales" EntityType="Self.EtapaMateriales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EtapaObra" EntityType="Self.EtapaObra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacturaMateriales" EntityType="Self.FacturaMateriales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gasto" EntityType="Self.Gasto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ingeniero" EntityType="Self.Ingeniero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Obra" EntityType="Self.Obra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_EmpleadoObra_Empleado" Association="Self.FK_EmpleadoObra_Empleado">
             <End Role="Empleado" EntitySet="Empleado" />
@@ -314,6 +435,30 @@
             <End Role="Obra" EntitySet="Obra" />
             <End Role="EtapaObra" EntitySet="EtapaObra" />
           </AssociationSet>
+          <AssociationSet Name="FK_Factura_Etapa" Association="Self.FK_Factura_Etapa">
+            <End Role="Etapa" EntitySet="Etapa" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Factura" Association="Self.FK_Factura_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Obra" Association="Self.FK_Factura_Obra">
+            <End Role="Obra" EntitySet="Obra" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Factura" Association="Self.FK_Gasto_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Obra" Association="Self.FK_Gasto_Obra">
+            <End Role="Obra" EntitySet="Obra" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Proveedor" Association="Self.FK_Gasto_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
           <AssociationSet Name="FK_Ingeniero_Especialidad" Association="Self.FK_Ingeniero_Especialidad">
             <End Role="Especialidad" EntitySet="Especialidad" />
             <End Role="Ingeniero" EntitySet="Ingeniero" />
@@ -338,63 +483,119 @@
             <End Role="Ubicacion" EntitySet="Ubicacion" />
             <End Role="Obra" EntitySet="Obra" />
           </AssociationSet>
+          <AssociationSet Name="FK_Producto_Factura" Association="Self.FK_Producto_Factura">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TEConstruyeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cliente">
-          <Key>
-            <PropertyRef Name="Cedula" />
-          </Key>
-          <Property Name="Cedula" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefono" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Obra" Relationship="Self.FK_Obra_Cliente" FromRole="Cliente" ToRole="Obra" />
-        </EntityType>
-        <EntityType Name="Empleado">
-          <Key>
-            <PropertyRef Name="Cedula" />
-          </Key>
-          <Property Name="Cedula" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefono" Type="Int32" Nullable="false" />
-          <Property Name="PagoHora" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EmpleadoObra" Relationship="Self.FK_EmpleadoObra_Empleado" FromRole="Empleado" ToRole="EmpleadoObra" />
-        </EntityType>
-        <EntityType Name="EmpleadoObra">
-          <Key>
-            <PropertyRef Name="IDEmpleado" />
-            <PropertyRef Name="IDObra" />
-          </Key>
-          <Property Name="IDEmpleado" Type="Int32" Nullable="false" />
-          <Property Name="IDObra" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Horas" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK_EmpleadoObra_Empleado" FromRole="EmpleadoObra" ToRole="Empleado" />
-          <NavigationProperty Name="Obra" Relationship="Self.FK_EmpleadoObra_Obra" FromRole="EmpleadoObra" ToRole="Obra" />
-        </EntityType>
+        <EntityContainer Name="TEConstruyeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Especialidad" EntityType="TEConstruyeModel.Especialidad" />
+          <EntitySet Name="EtapaMateriales" EntityType="TEConstruyeModel.EtapaMateriales" />
+          <EntitySet Name="Material" EntityType="TEConstruyeModel.Material" />
+          <AssociationSet Name="FK_EtapaMateriales_Material" Association="TEConstruyeModel.FK_EtapaMateriales_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="EtapaMateriales" EntitySet="EtapaMateriales" />
+          </AssociationSet>
+          <EntitySet Name="Cliente" EntityType="TEConstruyeModel.Cliente" />
+          <EntitySet Name="Empleado" EntityType="TEConstruyeModel.Empleado" />
+          <EntitySet Name="EmpleadoObra" EntityType="TEConstruyeModel.EmpleadoObra" />
+          <EntitySet Name="Etapa" EntityType="TEConstruyeModel.Etapa" />
+          <EntitySet Name="EtapaObra" EntityType="TEConstruyeModel.EtapaObra" />
+          <EntitySet Name="Factura" EntityType="TEConstruyeModel.Factura" />
+          <EntitySet Name="FacturaMateriales" EntityType="TEConstruyeModel.FacturaMateriales" />
+          <EntitySet Name="Gasto" EntityType="TEConstruyeModel.Gasto" />
+          <EntitySet Name="Ingeniero" EntityType="TEConstruyeModel.Ingeniero" />
+          <EntitySet Name="Obra" EntityType="TEConstruyeModel.Obra" />
+          <EntitySet Name="Proveedor" EntityType="TEConstruyeModel.Proveedor" />
+          <EntitySet Name="Ubicacion" EntityType="TEConstruyeModel.Ubicacion" />
+          <AssociationSet Name="FK_Obra_Cliente" Association="TEConstruyeModel.FK_Obra_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Obra" EntitySet="Obra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpleadoObra_Empleado" Association="TEConstruyeModel.FK_EmpleadoObra_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="EmpleadoObra" EntitySet="EmpleadoObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpleadoObra_Obra" Association="TEConstruyeModel.FK_EmpleadoObra_Obra">
+            <End Role="Obra" EntitySet="Obra" />
+            <End Role="EmpleadoObra" EntitySet="EmpleadoObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingeniero_Especialidad" Association="TEConstruyeModel.FK_Ingeniero_Especialidad">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Ingeniero" EntitySet="Ingeniero" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EtapaMateriales_Etapa" Association="TEConstruyeModel.FK_EtapaMateriales_Etapa">
+            <End Role="Etapa" EntitySet="Etapa" />
+            <End Role="EtapaMateriales" EntitySet="EtapaMateriales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EtapaObra_Etapa" Association="TEConstruyeModel.FK_EtapaObra_Etapa">
+            <End Role="Etapa" EntitySet="Etapa" />
+            <End Role="EtapaObra" EntitySet="EtapaObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Etapa" Association="TEConstruyeModel.FK_Factura_Etapa">
+            <End Role="Etapa" EntitySet="Etapa" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EtapaMateriales_Obra" Association="TEConstruyeModel.FK_EtapaMateriales_Obra">
+            <End Role="Obra" EntitySet="Obra" />
+            <End Role="EtapaMateriales" EntitySet="EtapaMateriales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EtapaObra_Obra" Association="TEConstruyeModel.FK_EtapaObra_Obra">
+            <End Role="Obra" EntitySet="Obra" />
+            <End Role="EtapaObra" EntitySet="EtapaObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Factura" Association="TEConstruyeModel.FK_Factura_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Obra" Association="TEConstruyeModel.FK_Factura_Obra">
+            <End Role="Obra" EntitySet="Obra" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Factura" Association="TEConstruyeModel.FK_Gasto_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Factura" Association="TEConstruyeModel.FK_Producto_Factura">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="FacturaMateriales" EntitySet="FacturaMateriales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Obra" Association="TEConstruyeModel.FK_Gasto_Obra">
+            <End Role="Obra" EntitySet="Obra" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Proveedor" Association="TEConstruyeModel.FK_Gasto_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obra_Ingeniero1" Association="TEConstruyeModel.FK_Obra_Ingeniero1">
+            <End Role="Ingeniero" EntitySet="Ingeniero" />
+            <End Role="Obra" EntitySet="Obra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obra_Ingeniero2" Association="TEConstruyeModel.FK_Obra_Ingeniero2">
+            <End Role="Ingeniero" EntitySet="Ingeniero" />
+            <End Role="Obra" EntitySet="Obra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obra_Ingeniero3" Association="TEConstruyeModel.FK_Obra_Ingeniero3">
+            <End Role="Ingeniero" EntitySet="Ingeniero" />
+            <End Role="Obra" EntitySet="Obra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obra_Ubicacion" Association="TEConstruyeModel.FK_Obra_Ubicacion">
+            <End Role="Ubicacion" EntitySet="Ubicacion" />
+            <End Role="Obra" EntitySet="Obra" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Especialidad">
           <Key>
             <PropertyRef Name="IDEspecialidad" />
           </Key>
           <Property Name="IDEspecialidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoEspecialidad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Ingeniero" Relationship="Self.FK_Ingeniero_Especialidad" FromRole="Especialidad" ToRole="Ingeniero" />
-        </EntityType>
-        <EntityType Name="Etapa">
-          <Key>
-            <PropertyRef Name="IDEtapa" />
-          </Key>
-          <Property Name="IDEtapa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="EtapaMateriales" Relationship="Self.FK_EtapaMateriales_Etapa" FromRole="Etapa" ToRole="EtapaMateriales" />
-          <NavigationProperty Name="EtapaObra" Relationship="Self.FK_EtapaObra_Etapa" FromRole="Etapa" ToRole="EtapaObra" />
+          <Property Name="TipoEspecialidad" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ingeniero" Relationship="TEConstruyeModel.FK_Ingeniero_Especialidad" FromRole="Especialidad" ToRole="Ingeniero" />
         </EntityType>
         <EntityType Name="EtapaMateriales">
           <Key>
@@ -406,9 +607,74 @@
           <Property Name="IDEtapa" Type="Int32" Nullable="false" />
           <Property Name="IDMaterial" Type="Int32" Nullable="false" />
           <Property Name="Cantidad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Etapa" Relationship="Self.FK_EtapaMateriales_Etapa" FromRole="EtapaMateriales" ToRole="Etapa" />
-          <NavigationProperty Name="Material" Relationship="Self.FK_EtapaMateriales_Material" FromRole="EtapaMateriales" ToRole="Material" />
-          <NavigationProperty Name="Obra" Relationship="Self.FK_EtapaMateriales_Obra" FromRole="EtapaMateriales" ToRole="Obra" />
+          <Property Name="PrecioTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Material" Relationship="TEConstruyeModel.FK_EtapaMateriales_Material" FromRole="EtapaMateriales" ToRole="Material" />
+          <NavigationProperty Name="Etapa" Relationship="TEConstruyeModel.FK_EtapaMateriales_Etapa" FromRole="EtapaMateriales" ToRole="Etapa" />
+          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_EtapaMateriales_Obra" FromRole="EtapaMateriales" ToRole="Obra" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioUnitario" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="EtapaMateriales" Relationship="TEConstruyeModel.FK_EtapaMateriales_Material" FromRole="Material" ToRole="EtapaMateriales" />
+          <NavigationProperty Name="FacturaMateriales" Relationship="TEConstruyeModel.FK_Producto_Factura" FromRole="Material" ToRole="FacturaMateriales" />
+        </EntityType>
+        <Association Name="FK_EtapaMateriales_Material">
+          <End Type="TEConstruyeModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="TEConstruyeModel.EtapaMateriales" Role="EtapaMateriales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="EtapaMateriales">
+              <PropertyRef Name="IDMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Cedula" />
+          </Key>
+          <Property Name="Cedula" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="Int32" />
+          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_Obra_Cliente" FromRole="Cliente" ToRole="Obra" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Cedula" />
+          </Key>
+          <Property Name="Cedula" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="Int32" Nullable="false" />
+          <Property Name="PagoHora" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="EmpleadoObra" Relationship="TEConstruyeModel.FK_EmpleadoObra_Empleado" FromRole="Empleado" ToRole="EmpleadoObra" />
+        </EntityType>
+        <EntityType Name="EmpleadoObra">
+          <Key>
+            <PropertyRef Name="IDEmpleado" />
+            <PropertyRef Name="IDObra" />
+          </Key>
+          <Property Name="IDEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="IDObra" Type="Int32" Nullable="false" />
+          <Property Name="Horas" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PagoTrabajador" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Empleado" Relationship="TEConstruyeModel.FK_EmpleadoObra_Empleado" FromRole="EmpleadoObra" ToRole="Empleado" />
+          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_EmpleadoObra_Obra" FromRole="EmpleadoObra" ToRole="Obra" />
+        </EntityType>
+        <EntityType Name="Etapa">
+          <Key>
+            <PropertyRef Name="IDEtapa" />
+          </Key>
+          <Property Name="IDEtapa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EtapaMateriales" Relationship="TEConstruyeModel.FK_EtapaMateriales_Etapa" FromRole="Etapa" ToRole="EtapaMateriales" />
+          <NavigationProperty Name="EtapaObra" Relationship="TEConstruyeModel.FK_EtapaObra_Etapa" FromRole="Etapa" ToRole="EtapaObra" />
+          <NavigationProperty Name="Factura" Relationship="TEConstruyeModel.FK_Factura_Etapa" FromRole="Etapa" ToRole="Factura" />
         </EntityType>
         <EntityType Name="EtapaObra">
           <Key>
@@ -419,41 +685,69 @@
           <Property Name="IDEtapa" Type="Int32" Nullable="false" />
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FechaFin" Type="DateTime" Precision="0" />
-          <Property Name="Presupuesto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Etapa" Relationship="Self.FK_EtapaObra_Etapa" FromRole="EtapaObra" ToRole="Etapa" />
-          <NavigationProperty Name="Obra" Relationship="Self.FK_EtapaObra_Obra" FromRole="EtapaObra" ToRole="Obra" />
+          <Property Name="Presupuesto" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="GastoEtapa" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Etapa" Relationship="TEConstruyeModel.FK_EtapaObra_Etapa" FromRole="EtapaObra" ToRole="Etapa" />
+          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_EtapaObra_Obra" FromRole="EtapaObra" ToRole="Obra" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="IDFactura" />
+          </Key>
+          <Property Name="IDFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDObra" Type="Int32" Nullable="false" />
+          <Property Name="IDEtapa" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Etapa" Relationship="TEConstruyeModel.FK_Factura_Etapa" FromRole="Factura" ToRole="Etapa" />
+          <NavigationProperty Name="FacturaMateriales" Relationship="TEConstruyeModel.FK_Factura_Factura" FromRole="Factura" ToRole="FacturaMateriales" />
+          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_Factura_Obra" FromRole="Factura" ToRole="Obra" />
+          <NavigationProperty Name="Gasto" Relationship="TEConstruyeModel.FK_Gasto_Factura" FromRole="Factura" ToRole="Gasto" />
+        </EntityType>
+        <EntityType Name="FacturaMateriales">
+          <Key>
+            <PropertyRef Name="IDFactura" />
+            <PropertyRef Name="IDProducto" />
+          </Key>
+          <Property Name="IDFactura" Type="Int32" Nullable="false" />
+          <Property Name="IDProducto" Type="Int32" Nullable="false" />
+          <Property Name="Neto" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Factura" Relationship="TEConstruyeModel.FK_Factura_Factura" FromRole="FacturaMateriales" ToRole="Factura" />
+          <NavigationProperty Name="Material" Relationship="TEConstruyeModel.FK_Producto_Factura" FromRole="FacturaMateriales" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="IDGasto" />
+          </Key>
+          <Property Name="IDGasto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDObra" Type="Int32" Nullable="false" />
+          <Property Name="Proveedor" Type="Int32" Nullable="false" />
+          <Property Name="IDFactura" Type="Int32" Nullable="false" />
+          <Property Name="Foto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Factura" Relationship="TEConstruyeModel.FK_Gasto_Factura" FromRole="Gasto" ToRole="Factura" />
+          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_Gasto_Obra" FromRole="Gasto" ToRole="Obra" />
+          <NavigationProperty Name="Proveedor1" Relationship="TEConstruyeModel.FK_Gasto_Proveedor" FromRole="Gasto" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Ingeniero">
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Cedula" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Especialidad" Type="Int32" Nullable="false" />
           <Property Name="Telefono" Type="Int32" Nullable="false" />
           <Property Name="Codigo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Especialidad1" Relationship="Self.FK_Ingeniero_Especialidad" FromRole="Ingeniero" ToRole="Especialidad" />
-          <NavigationProperty Name="Obra" Relationship="Self.FK_Obra_Ingeniero1" FromRole="Ingeniero" ToRole="Obra" />
-          <NavigationProperty Name="Obra1" Relationship="Self.FK_Obra_Ingeniero2" FromRole="Ingeniero" ToRole="Obra" />
-          <NavigationProperty Name="Obra2" Relationship="Self.FK_Obra_Ingeniero3" FromRole="Ingeniero" ToRole="Obra" />
-        </EntityType>
-        <EntityType Name="Material">
-          <Key>
-            <PropertyRef Name="Codigo" />
-          </Key>
-          <Property Name="Codigo" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PrecioUnitario" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EtapaMateriales" Relationship="Self.FK_EtapaMateriales_Material" FromRole="Material" ToRole="EtapaMateriales" />
+          <NavigationProperty Name="Especialidad1" Relationship="TEConstruyeModel.FK_Ingeniero_Especialidad" FromRole="Ingeniero" ToRole="Especialidad" />
+          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_Obra_Ingeniero1" FromRole="Ingeniero" ToRole="Obra" />
+          <NavigationProperty Name="Obra1" Relationship="TEConstruyeModel.FK_Obra_Ingeniero2" FromRole="Ingeniero" ToRole="Obra" />
+          <NavigationProperty Name="Obra2" Relationship="TEConstruyeModel.FK_Obra_Ingeniero3" FromRole="Ingeniero" ToRole="Obra" />
         </EntityType>
         <EntityType Name="Obra">
           <Key>
             <PropertyRef Name="IDObra" />
           </Key>
           <Property Name="IDObra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Ubicacion" Type="Int32" Nullable="false" />
           <Property Name="Habitaciones" Type="Int32" Nullable="false" />
           <Property Name="Banos" Type="Int32" Nullable="false" />
@@ -463,29 +757,39 @@
           <Property Name="IDIngeniero1" Type="Int32" Nullable="false" />
           <Property Name="IDIngeniero2" Type="Int32" />
           <Property Name="IDIngeniero3" Type="Int32" />
-          <Property Name="IDCliente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_Obra_Cliente" FromRole="Obra" ToRole="Cliente" />
-          <NavigationProperty Name="EmpleadoObra" Relationship="Self.FK_EmpleadoObra_Obra" FromRole="Obra" ToRole="EmpleadoObra" />
-          <NavigationProperty Name="EtapaMateriales" Relationship="Self.FK_EtapaMateriales_Obra" FromRole="Obra" ToRole="EtapaMateriales" />
-          <NavigationProperty Name="EtapaObra" Relationship="Self.FK_EtapaObra_Obra" FromRole="Obra" ToRole="EtapaObra" />
-          <NavigationProperty Name="Ingeniero" Relationship="Self.FK_Obra_Ingeniero1" FromRole="Obra" ToRole="Ingeniero" />
-          <NavigationProperty Name="Ingeniero1" Relationship="Self.FK_Obra_Ingeniero2" FromRole="Obra" ToRole="Ingeniero" />
-          <NavigationProperty Name="Ingeniero2" Relationship="Self.FK_Obra_Ingeniero3" FromRole="Obra" ToRole="Ingeniero" />
-          <NavigationProperty Name="Ubicacion1" Relationship="Self.FK_Obra_Ubicacion" FromRole="Obra" ToRole="Ubicacion" />
+          <Property Name="IDCliente" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="TEConstruyeModel.FK_Obra_Cliente" FromRole="Obra" ToRole="Cliente" />
+          <NavigationProperty Name="EmpleadoObra" Relationship="TEConstruyeModel.FK_EmpleadoObra_Obra" FromRole="Obra" ToRole="EmpleadoObra" />
+          <NavigationProperty Name="EtapaMateriales" Relationship="TEConstruyeModel.FK_EtapaMateriales_Obra" FromRole="Obra" ToRole="EtapaMateriales" />
+          <NavigationProperty Name="EtapaObra" Relationship="TEConstruyeModel.FK_EtapaObra_Obra" FromRole="Obra" ToRole="EtapaObra" />
+          <NavigationProperty Name="Factura" Relationship="TEConstruyeModel.FK_Factura_Obra" FromRole="Obra" ToRole="Factura" />
+          <NavigationProperty Name="Gasto" Relationship="TEConstruyeModel.FK_Gasto_Obra" FromRole="Obra" ToRole="Gasto" />
+          <NavigationProperty Name="Ingeniero" Relationship="TEConstruyeModel.FK_Obra_Ingeniero1" FromRole="Obra" ToRole="Ingeniero" />
+          <NavigationProperty Name="Ingeniero1" Relationship="TEConstruyeModel.FK_Obra_Ingeniero2" FromRole="Obra" ToRole="Ingeniero" />
+          <NavigationProperty Name="Ingeniero2" Relationship="TEConstruyeModel.FK_Obra_Ingeniero3" FromRole="Obra" ToRole="Ingeniero" />
+          <NavigationProperty Name="Ubicacion1" Relationship="TEConstruyeModel.FK_Obra_Ubicacion" FromRole="Obra" ToRole="Ubicacion" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="IDProveedor" />
+          </Key>
+          <Property Name="IDProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Gasto" Relationship="TEConstruyeModel.FK_Gasto_Proveedor" FromRole="Proveedor" ToRole="Gasto" />
         </EntityType>
         <EntityType Name="Ubicacion">
           <Key>
             <PropertyRef Name="IDUbicacion" />
           </Key>
           <Property Name="IDUbicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Provincia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Canton" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Distrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Obra" Relationship="Self.FK_Obra_Ubicacion" FromRole="Ubicacion" ToRole="Obra" />
+          <Property Name="Provincia" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Canton" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Distrito" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Obra" Relationship="TEConstruyeModel.FK_Obra_Ubicacion" FromRole="Ubicacion" ToRole="Obra" />
         </EntityType>
         <Association Name="FK_Obra_Cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Obra" Type="Self.Obra" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cliente">
               <PropertyRef Name="Cedula" />
@@ -496,8 +800,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmpleadoObra_Empleado">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
-          <End Role="EmpleadoObra" Type="Self.EmpleadoObra" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="TEConstruyeModel.EmpleadoObra" Role="EmpleadoObra" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Empleado">
               <PropertyRef Name="Cedula" />
@@ -508,8 +812,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmpleadoObra_Obra">
-          <End Role="Obra" Type="Self.Obra" Multiplicity="1" />
-          <End Role="EmpleadoObra" Type="Self.EmpleadoObra" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="1" />
+          <End Type="TEConstruyeModel.EmpleadoObra" Role="EmpleadoObra" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obra">
               <PropertyRef Name="IDObra" />
@@ -520,8 +824,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ingeniero_Especialidad">
-          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
-          <End Role="Ingeniero" Type="Self.Ingeniero" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Especialidad" Role="Especialidad" Multiplicity="1" />
+          <End Type="TEConstruyeModel.Ingeniero" Role="Ingeniero" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Especialidad">
               <PropertyRef Name="IDEspecialidad" />
@@ -532,8 +836,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EtapaMateriales_Etapa">
-          <End Role="Etapa" Type="Self.Etapa" Multiplicity="1" />
-          <End Role="EtapaMateriales" Type="Self.EtapaMateriales" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Etapa" Role="Etapa" Multiplicity="1" />
+          <End Type="TEConstruyeModel.EtapaMateriales" Role="EtapaMateriales" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Etapa">
               <PropertyRef Name="IDEtapa" />
@@ -544,8 +848,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EtapaObra_Etapa">
-          <End Role="Etapa" Type="Self.Etapa" Multiplicity="1" />
-          <End Role="EtapaObra" Type="Self.EtapaObra" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Etapa" Role="Etapa" Multiplicity="1" />
+          <End Type="TEConstruyeModel.EtapaObra" Role="EtapaObra" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Etapa">
               <PropertyRef Name="IDEtapa" />
@@ -555,21 +859,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EtapaMateriales_Material">
-          <End Role="Material" Type="Self.Material" Multiplicity="1" />
-          <End Role="EtapaMateriales" Type="Self.EtapaMateriales" Multiplicity="*" />
+        <Association Name="FK_Factura_Etapa">
+          <End Type="TEConstruyeModel.Etapa" Role="Etapa" Multiplicity="1" />
+          <End Type="TEConstruyeModel.Factura" Role="Factura" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Material">
-              <PropertyRef Name="Codigo" />
+            <Principal Role="Etapa">
+              <PropertyRef Name="IDEtapa" />
             </Principal>
-            <Dependent Role="EtapaMateriales">
-              <PropertyRef Name="IDMaterial" />
+            <Dependent Role="Factura">
+              <PropertyRef Name="IDEtapa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EtapaMateriales_Obra">
-          <End Role="Obra" Type="Self.Obra" Multiplicity="1" />
-          <End Role="EtapaMateriales" Type="Self.EtapaMateriales" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="1" />
+          <End Type="TEConstruyeModel.EtapaMateriales" Role="EtapaMateriales" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obra">
               <PropertyRef Name="IDObra" />
@@ -580,8 +884,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EtapaObra_Obra">
-          <End Role="Obra" Type="Self.Obra" Multiplicity="1" />
-          <End Role="EtapaObra" Type="Self.EtapaObra" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="1" />
+          <End Type="TEConstruyeModel.EtapaObra" Role="EtapaObra" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obra">
               <PropertyRef Name="IDObra" />
@@ -591,9 +895,81 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Factura_Factura">
+          <End Type="TEConstruyeModel.Factura" Role="Factura" Multiplicity="1" />
+          <End Type="TEConstruyeModel.FacturaMateriales" Role="FacturaMateriales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="IDFactura" />
+            </Principal>
+            <Dependent Role="FacturaMateriales">
+              <PropertyRef Name="IDFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Obra">
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="1" />
+          <End Type="TEConstruyeModel.Factura" Role="Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obra">
+              <PropertyRef Name="IDObra" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IDObra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Factura">
+          <End Type="TEConstruyeModel.Factura" Role="Factura" Multiplicity="1" />
+          <End Type="TEConstruyeModel.Gasto" Role="Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="IDFactura" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="IDFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Factura">
+          <End Type="TEConstruyeModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="TEConstruyeModel.FacturaMateriales" Role="FacturaMateriales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="FacturaMateriales">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Obra">
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="1" />
+          <End Type="TEConstruyeModel.Gasto" Role="Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obra">
+              <PropertyRef Name="IDObra" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="IDObra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Proveedor">
+          <End Type="TEConstruyeModel.Proveedor" Role="Proveedor" Multiplicity="1" />
+          <End Type="TEConstruyeModel.Gasto" Role="Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="IDProveedor" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Obra_Ingeniero1">
-          <End Role="Ingeniero" Type="Self.Ingeniero" Multiplicity="1" />
-          <End Role="Obra" Type="Self.Obra" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Ingeniero" Role="Ingeniero" Multiplicity="1" />
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingeniero">
               <PropertyRef Name="Codigo" />
@@ -604,8 +980,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Obra_Ingeniero2">
-          <End Role="Ingeniero" Type="Self.Ingeniero" Multiplicity="0..1" />
-          <End Role="Obra" Type="Self.Obra" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Ingeniero" Role="Ingeniero" Multiplicity="0..1" />
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingeniero">
               <PropertyRef Name="Codigo" />
@@ -616,8 +992,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Obra_Ingeniero3">
-          <End Role="Ingeniero" Type="Self.Ingeniero" Multiplicity="0..1" />
-          <End Role="Obra" Type="Self.Obra" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Ingeniero" Role="Ingeniero" Multiplicity="0..1" />
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingeniero">
               <PropertyRef Name="Codigo" />
@@ -628,8 +1004,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Obra_Ubicacion">
-          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="1" />
-          <End Role="Obra" Type="Self.Obra" Multiplicity="*" />
+          <End Type="TEConstruyeModel.Ubicacion" Role="Ubicacion" Multiplicity="1" />
+          <End Type="TEConstruyeModel.Obra" Role="Obra" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ubicacion">
               <PropertyRef Name="IDUbicacion" />
@@ -639,198 +1015,169 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TEConstruyeEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
-          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
-          <EntitySet Name="EmpleadoObra" EntityType="Self.EmpleadoObra" />
-          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" />
-          <EntitySet Name="Etapa" EntityType="Self.Etapa" />
-          <EntitySet Name="EtapaMateriales" EntityType="Self.EtapaMateriales" />
-          <EntitySet Name="EtapaObra" EntityType="Self.EtapaObra" />
-          <EntitySet Name="Ingeniero" EntityType="Self.Ingeniero" />
-          <EntitySet Name="Material" EntityType="Self.Material" />
-          <EntitySet Name="Obra" EntityType="Self.Obra" />
-          <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" />
-          <AssociationSet Name="FK_Obra_Cliente" Association="Self.FK_Obra_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Obra" EntitySet="Obra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpleadoObra_Empleado" Association="Self.FK_EmpleadoObra_Empleado">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="EmpleadoObra" EntitySet="EmpleadoObra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpleadoObra_Obra" Association="Self.FK_EmpleadoObra_Obra">
-            <End Role="Obra" EntitySet="Obra" />
-            <End Role="EmpleadoObra" EntitySet="EmpleadoObra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ingeniero_Especialidad" Association="Self.FK_Ingeniero_Especialidad">
-            <End Role="Especialidad" EntitySet="Especialidad" />
-            <End Role="Ingeniero" EntitySet="Ingeniero" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EtapaMateriales_Etapa" Association="Self.FK_EtapaMateriales_Etapa">
-            <End Role="Etapa" EntitySet="Etapa" />
-            <End Role="EtapaMateriales" EntitySet="EtapaMateriales" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EtapaObra_Etapa" Association="Self.FK_EtapaObra_Etapa">
-            <End Role="Etapa" EntitySet="Etapa" />
-            <End Role="EtapaObra" EntitySet="EtapaObra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EtapaMateriales_Material" Association="Self.FK_EtapaMateriales_Material">
-            <End Role="Material" EntitySet="Material" />
-            <End Role="EtapaMateriales" EntitySet="EtapaMateriales" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EtapaMateriales_Obra" Association="Self.FK_EtapaMateriales_Obra">
-            <End Role="Obra" EntitySet="Obra" />
-            <End Role="EtapaMateriales" EntitySet="EtapaMateriales" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EtapaObra_Obra" Association="Self.FK_EtapaObra_Obra">
-            <End Role="Obra" EntitySet="Obra" />
-            <End Role="EtapaObra" EntitySet="EtapaObra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Obra_Ingeniero1" Association="Self.FK_Obra_Ingeniero1">
-            <End Role="Ingeniero" EntitySet="Ingeniero" />
-            <End Role="Obra" EntitySet="Obra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Obra_Ingeniero2" Association="Self.FK_Obra_Ingeniero2">
-            <End Role="Ingeniero" EntitySet="Ingeniero" />
-            <End Role="Obra" EntitySet="Obra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Obra_Ingeniero3" Association="Self.FK_Obra_Ingeniero3">
-            <End Role="Ingeniero" EntitySet="Ingeniero" />
-            <End Role="Obra" EntitySet="Obra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Obra_Ubicacion" Association="Self.FK_Obra_Ubicacion">
-            <End Role="Ubicacion" EntitySet="Ubicacion" />
-            <End Role="Obra" EntitySet="Obra" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TEConstruyeModelStoreContainer" CdmEntityContainer="TEConstruyeEntities">
-          <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="TEConstruyeModel.Cliente">
-              <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
-                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Empleado">
-            <EntityTypeMapping TypeName="TEConstruyeModel.Empleado">
-              <MappingFragment StoreEntitySet="Empleado">
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
-                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="PagoHora" ColumnName="PagoHora" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmpleadoObra">
-            <EntityTypeMapping TypeName="TEConstruyeModel.EmpleadoObra">
-              <MappingFragment StoreEntitySet="EmpleadoObra">
-                <ScalarProperty Name="IDEmpleado" ColumnName="IDEmpleado" />
-                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Horas" ColumnName="Horas" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Especialidad">
             <EntityTypeMapping TypeName="TEConstruyeModel.Especialidad">
               <MappingFragment StoreEntitySet="Especialidad">
-                <ScalarProperty Name="IDEspecialidad" ColumnName="IDEspecialidad" />
                 <ScalarProperty Name="TipoEspecialidad" ColumnName="TipoEspecialidad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Etapa">
-            <EntityTypeMapping TypeName="TEConstruyeModel.Etapa">
-              <MappingFragment StoreEntitySet="Etapa">
-                <ScalarProperty Name="IDEtapa" ColumnName="IDEtapa" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDEspecialidad" ColumnName="IDEspecialidad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EtapaMateriales">
             <EntityTypeMapping TypeName="TEConstruyeModel.EtapaMateriales">
               <MappingFragment StoreEntitySet="EtapaMateriales">
-                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
-                <ScalarProperty Name="IDEtapa" ColumnName="IDEtapa" />
-                <ScalarProperty Name="IDMaterial" ColumnName="IDMaterial" />
+                <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EtapaObra">
-            <EntityTypeMapping TypeName="TEConstruyeModel.EtapaObra">
-              <MappingFragment StoreEntitySet="EtapaObra">
-                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
+                <ScalarProperty Name="IDMaterial" ColumnName="IDMaterial" />
                 <ScalarProperty Name="IDEtapa" ColumnName="IDEtapa" />
-                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
-                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-                <ScalarProperty Name="Presupuesto" ColumnName="Presupuesto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Ingeniero">
-            <EntityTypeMapping TypeName="TEConstruyeModel.Ingeniero">
-              <MappingFragment StoreEntitySet="Ingeniero">
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
-                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
-                <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Material">
             <EntityTypeMapping TypeName="TEConstruyeModel.Material">
               <MappingFragment StoreEntitySet="Material">
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="TEConstruyeModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="TEConstruyeModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="PagoHora" ColumnName="PagoHora" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpleadoObra">
+            <EntityTypeMapping TypeName="TEConstruyeModel.EmpleadoObra">
+              <MappingFragment StoreEntitySet="EmpleadoObra">
+                <ScalarProperty Name="PagoTrabajador" ColumnName="PagoTrabajador" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Horas" ColumnName="Horas" />
+                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
+                <ScalarProperty Name="IDEmpleado" ColumnName="IDEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Etapa">
+            <EntityTypeMapping TypeName="TEConstruyeModel.Etapa">
+              <MappingFragment StoreEntitySet="Etapa">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDEtapa" ColumnName="IDEtapa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EtapaObra">
+            <EntityTypeMapping TypeName="TEConstruyeModel.EtapaObra">
+              <MappingFragment StoreEntitySet="EtapaObra">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="GastoEtapa" ColumnName="GastoEtapa" />
+                <ScalarProperty Name="Presupuesto" ColumnName="Presupuesto" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="IDEtapa" ColumnName="IDEtapa" />
+                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Factura">
+            <EntityTypeMapping TypeName="TEConstruyeModel.Factura">
+              <MappingFragment StoreEntitySet="Factura">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IDEtapa" ColumnName="IDEtapa" />
+                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
+                <ScalarProperty Name="IDFactura" ColumnName="IDFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturaMateriales">
+            <EntityTypeMapping TypeName="TEConstruyeModel.FacturaMateriales">
+              <MappingFragment StoreEntitySet="FacturaMateriales">
+                <ScalarProperty Name="Neto" ColumnName="Neto" />
+                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+                <ScalarProperty Name="IDFactura" ColumnName="IDFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gasto">
+            <EntityTypeMapping TypeName="TEConstruyeModel.Gasto">
+              <MappingFragment StoreEntitySet="Gasto">
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="IDFactura" ColumnName="IDFactura" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
+                <ScalarProperty Name="IDGasto" ColumnName="IDGasto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingeniero">
+            <EntityTypeMapping TypeName="TEConstruyeModel.Ingeniero">
+              <MappingFragment StoreEntitySet="Ingeniero">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Obra">
             <EntityTypeMapping TypeName="TEConstruyeModel.Obra">
               <MappingFragment StoreEntitySet="Obra">
-                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
-                <ScalarProperty Name="Habitaciones" ColumnName="Habitaciones" />
-                <ScalarProperty Name="Banos" ColumnName="Banos" />
-                <ScalarProperty Name="Pisos" ColumnName="Pisos" />
-                <ScalarProperty Name="AreaConstruccion" ColumnName="AreaConstruccion" />
-                <ScalarProperty Name="AreaLote" ColumnName="AreaLote" />
-                <ScalarProperty Name="IDIngeniero1" ColumnName="IDIngeniero1" />
-                <ScalarProperty Name="IDIngeniero2" ColumnName="IDIngeniero2" />
-                <ScalarProperty Name="IDIngeniero3" ColumnName="IDIngeniero3" />
                 <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+                <ScalarProperty Name="IDIngeniero3" ColumnName="IDIngeniero3" />
+                <ScalarProperty Name="IDIngeniero2" ColumnName="IDIngeniero2" />
+                <ScalarProperty Name="IDIngeniero1" ColumnName="IDIngeniero1" />
+                <ScalarProperty Name="AreaLote" ColumnName="AreaLote" />
+                <ScalarProperty Name="AreaConstruccion" ColumnName="AreaConstruccion" />
+                <ScalarProperty Name="Pisos" ColumnName="Pisos" />
+                <ScalarProperty Name="Banos" ColumnName="Banos" />
+                <ScalarProperty Name="Habitaciones" ColumnName="Habitaciones" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDObra" ColumnName="IDObra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedor">
+            <EntityTypeMapping TypeName="TEConstruyeModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDProveedor" ColumnName="IDProveedor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ubicacion">
             <EntityTypeMapping TypeName="TEConstruyeModel.Ubicacion">
               <MappingFragment StoreEntitySet="Ubicacion">
-                <ScalarProperty Name="IDUbicacion" ColumnName="IDUbicacion" />
-                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
-                <ScalarProperty Name="Canton" ColumnName="Canton" />
                 <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+                <ScalarProperty Name="Canton" ColumnName="Canton" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="IDUbicacion" ColumnName="IDUbicacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -845,7 +1192,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>

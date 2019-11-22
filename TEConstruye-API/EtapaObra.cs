@@ -25,7 +25,11 @@ namespace TEConstruye_API
         [DataMember]
         public Nullable<System.DateTime> FechaFin { get; set; }
         [DataMember]
-        public int Presupuesto { get; set; }
+        public decimal Presupuesto { get; set; }
+        [DataMember]
+        public decimal GastoEtapa { get; set; }
+        [DataMember]
+        public string Descripcion { get; set; }
     
         public virtual Etapa Etapa { get; set; }
         public virtual Obra Obra { get; set; }

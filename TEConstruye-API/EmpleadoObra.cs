@@ -21,9 +21,11 @@ namespace TEConstruye_API
         [DataMember]
         public int IDObra { get; set; }
         [DataMember]
+        public int Horas { get; set; }
+        [DataMember]
         public System.DateTime Fecha { get; set; }
         [DataMember]
-        public int Horas { get; set; }
+        public decimal PagoTrabajador { get; set; }
     
         public virtual Empleado Empleado { get; set; }
         public virtual Obra Obra { get; set; }
